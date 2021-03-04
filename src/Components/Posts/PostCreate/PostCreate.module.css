@@ -1,0 +1,30 @@
+.PostCreate{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:90%;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 5px;
+}
+.PostCreate textarea, .PostCreate input{
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    font-family: monospace;
+}
+.PostCreate input {
+    padding: 0 5px 5px 5px;
+}
+.PostCreate textarea{
+    padding: 5px;
+}
+
+@media(min-width:500px){
+    .PostCreate{
+        width: 55%;
+    }
+}

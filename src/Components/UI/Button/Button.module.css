@@ -1,0 +1,12 @@
+.Button {
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    box-shadow: 0 2px 3px #ccc;
+}
+.SavePost {
+    background-color: hotpink;
+}
