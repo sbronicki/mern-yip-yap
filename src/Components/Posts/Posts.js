@@ -48,23 +48,31 @@ class Posts extends Component{
         })
         .catch(error => console.log(error))
      }
-     editPostHandler = (post) => {
-         console.log('edit post')
+     editPostHandler = (e) => {
+        let post = e.target.parentElement.parentElement
+        let postId = e.target.parentElement.parentElement.id
+        console.log(post)
+        console.log(postId)
      }
-     deletePostHandler = (post) => {
-        const postId = post.target.parentElement.parentElement.id
-        console.log('http://localhost:4200/posts/' + postId)
-
+     deletePostHandler = (e) => {
+        const postId = e.target.parentElement.parentElement.id
         axios
         .delete('http://localhost:4200/posts/' + postId)
-        .then((res) => console.log(res))
+        .then((res) => {
+            let updatedPosts  = this.state.savedPosts.filter(post => post.props.id !== postId)
+            console.log(this.state.savedPosts.length)
+            if(this.state.savedPosts.length - 1 === 0){
+                this.setState({savedPosts: updatedPosts, hasPosts: false})
+            } else {
+                this.setState({savedPosts: updatedPosts})
+            }
+        })
         .catch((e) => console.log(e))
      }
      componentDidMount(){
          axios
          .get('http://localhost:4200/posts')
          .then(response => {
-             console.log(response)
              if(response.data.posts.length !== 0){ 
                 for(let post of response.data.posts){
                     this.savedPost.postTitle = post.title
@@ -88,7 +96,6 @@ class Posts extends Component{
          .catch(error => {
              console.log(error)
          })
-
      }
     render(){
         return(
