@@ -6,7 +6,20 @@
     margin: 10px;
     font-weight: bold;
     box-shadow: 0 2px 3px #ccc;
+    cursor: pointer;
 }
 .SavePost {
     background-color: hotpink;
+}
+.Delete, .Edit{
+    background-color: transparent;
+    box-shadow: none;
+    margin: 5px;
+    padding: 0;
+}
+.Delete{
+    color: red;
+}
+.Edit{
+    color: blue;
 }

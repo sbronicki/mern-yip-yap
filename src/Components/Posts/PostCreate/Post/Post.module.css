@@ -12,3 +12,11 @@
 .Post h2, .Post p {
     margin: 5px;
 }
+.ButtonContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.ButtonContainer Button {
+    font-size: 11px;
+}

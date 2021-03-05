@@ -27,7 +27,9 @@ class Posts extends Component{
         const postToDisplay = <Post
         title={this.savedPost.postTitle} 
         content={this.savedPost.postContent} 
-        key={this.savedPosts.length} />
+        key={this.savedPosts.length}
+        editPost={this.editPostHandler}
+        deletePost={this.deletePostHandler} />
 
         this.savedPosts.push(postToDisplay)
         this.setState({
@@ -42,19 +44,28 @@ class Posts extends Component{
         axios
         .post('http://localhost:4200/posts', post)
         .then(response => {
-            // console.log(response)
+            console.log(response)
         })
         .catch(error => console.log(error))
      }
-// write code for componentDidMount and savePostHandler into one function to be used by both
-// add edit and delete options to posts and wire up to server
-// clear input fields after saving a new post
-// not allow posts if missing title or content / disable button
+     editPostHandler = (post) => {
+         console.log('edit post')
+     }
+     deletePostHandler = (post) => {
+        const postId = post.target.parentElement.parentElement.id
+        console.log('http://localhost:4200/posts/' + postId)
+
+        axios
+        .delete('http://localhost:4200/posts/' + postId)
+        .then((res) => console.log(res))
+        .catch((e) => console.log(e))
+     }
      componentDidMount(){
          axios
          .get('http://localhost:4200/posts')
          .then(response => {
-             if(response.data.posts !== []){ 
+             console.log(response)
+             if(response.data.posts.length !== 0){ 
                 for(let post of response.data.posts){
                     this.savedPost.postTitle = post.title
                     this.savedPost.postContent = post.content
@@ -63,7 +74,9 @@ class Posts extends Component{
                             title={post.title} 
                             content={post.content} 
                             key={post._id}
-                            id={post._id} />
+                            id={post._id}
+                            editPost={this.editPostHandler}
+                            deletePost={this.deletePostHandler} />
                         )
                 }
                 this.setState({
@@ -78,7 +91,6 @@ class Posts extends Component{
 
      }
     render(){
-        console.log(this.state)
         return(
             <div className={classes.Posts}>
                 <PostCreate
