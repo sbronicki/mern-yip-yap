@@ -1,9 +1,9 @@
-import Layout from './Layout/Layout'
-import Posts from './Components/Posts/Posts'
+import Layout from './Containers/Layout/Layout'
+import {BrowserRouter} from 'react-router-dom'
 
 //NEED TO: 
+// add skeleton loader
 // write code for componentDidMount and savePostHandler into one function to be used by both in Posts.js
-// add edit and delete options to posts and wire up to server
 // clear input fields after saving a new post
 // not allow posts if missing title or content / disable button
 // savedPosts loaded from db initiallly max of 10, more upon request
@@ -11,11 +11,11 @@ import Posts from './Components/Posts/Posts'
 
 function App() {
   return (
-    <div className="App">
-      <Layout>
-        <Posts />
-      </Layout>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Layout />
+      </div>
+    </BrowserRouter>
   );
 }
 
