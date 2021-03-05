@@ -24,27 +24,28 @@ class Posts extends Component{
         this.savedPost.postContent = e.target.value
     }
     savePostHandler = () => {
-        const postToDisplay = <Post
-        title={this.savedPost.postTitle} 
-        content={this.savedPost.postContent} 
-        key={this.savedPosts.length}
-        editPost={this.editPostHandler}
-        deletePost={this.deletePostHandler} />
-
-        this.savedPosts.push(postToDisplay)
-        this.setState({
-            hasPosts: true,
-            savedPosts: this.savedPosts
-        })
         const post = {
             title: this.savedPost.postTitle,
             content: this.savedPost.postContent
         }
-
         axios
         .post('http://localhost:4200/posts', post)
         .then(response => {
-            console.log(response)
+            const savedPostId = response.data.postId
+            const postToDisplay = <Post
+            title={this.savedPost.postTitle} 
+            content={this.savedPost.postContent} 
+            key={this.savedPosts.length}
+            editPost={this.editPostHandler}
+            deletePost={this.deletePostHandler}
+            id={savedPostId} />
+    
+            this.savedPosts.push(postToDisplay)
+            this.setState({
+                hasPosts: true,
+                savedPosts: this.savedPosts
+            }) 
+            console.log(this.state.savedPosts)   
         })
         .catch(error => console.log(error))
      }
@@ -60,12 +61,12 @@ class Posts extends Component{
         .delete('http://localhost:4200/posts/' + postId)
         .then((res) => {
             let updatedPosts  = this.state.savedPosts.filter(post => post.props.id !== postId)
-            console.log(this.state.savedPosts.length)
             if(this.state.savedPosts.length - 1 === 0){
                 this.setState({savedPosts: updatedPosts, hasPosts: false})
             } else {
                 this.setState({savedPosts: updatedPosts})
             }
+            this.savedPosts = updatedPosts
         })
         .catch((e) => console.log(e))
      }
