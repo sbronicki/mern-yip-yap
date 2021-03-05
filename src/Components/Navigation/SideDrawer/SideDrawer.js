@@ -1,3 +1,5 @@
+import {Router, Link} from 'react-router-dom'
+
 import classes from './SideDrawer.module.css'
 import Logo from '../../Logo/Logo'
 import NavItems from '../NavItems/NavItems'
@@ -13,7 +15,7 @@ const sideDrawer = (props) => {
             <Backdrop show={props.open} clicked={props.closed} />
             <div className={attachedClasses.join(' ')}>
                 <div className={classes.Logo}>
-                    <Logo />
+                    <Link to='/'><Logo /></Link>
                 </div>
                 <nav>
                     <NavItems />

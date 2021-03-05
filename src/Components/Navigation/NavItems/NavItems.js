@@ -4,9 +4,9 @@ import NavItem from './NavItem/NavItem'
 
 const navItems = (props) => (
         <ul className={classes.NavItems}>
-            <NavItem NavItemHREF="/" NavItemTitle={'New Post'} />
+            <NavItem NavItemHREF="/new-post" NavItemTitle={'New Post'} />
             <NavItem NavItemHREF="/" NavItemTitle={'Profile'} />
-            <NavItem NavItemHREF="/" NavItemTitle={'Feed'} />
+            <NavItem NavItemHREF="/feed" NavItemTitle={'Feed'} />
         </ul>
 )
 

@@ -9,7 +9,6 @@ const normalizePort = val => {
     // named pipe
     return val;
   }
-
   if (port >= 0) {
     // port number
     return port;
