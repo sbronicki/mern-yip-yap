@@ -1,7 +1,12 @@
 .NavItem {
     margin: 10px;
     padding: 5px;
-}.NavItem {
-    margin: 10px;
-    padding: 5px;
+} 
+.NavItem a{
+    text-decoration: none;
+    color: black;
+}
+.NavItem a:hover,
+.NavItem a:active{
+    color: rgb(5, 252, 169);;
 }

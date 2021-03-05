@@ -16,11 +16,11 @@
     justify-content: flex-start;
 }
 
-@media(min-width: 500px) {
+/* @media(min-width: 500px) {
     .SideDrawer {
         display: none;
     }
-}
+} */
 
 .Open {
     transform: translateX(0);

@@ -2,6 +2,8 @@ import classes from './PostCreate.module.css'
 import Button from '../../UI/Button/Button'
 
 const postCreate = (props) => {
+
+
     return(
     <div className={classes.PostCreate}>
         <input type="text" placeholder="Post Title" onChange={props.titleChanged} />
