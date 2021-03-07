@@ -12,5 +12,4 @@ const post = (props) => (
     </li>
 )
 
-
 export default post
