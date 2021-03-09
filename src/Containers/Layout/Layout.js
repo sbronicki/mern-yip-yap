@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import classes from './Layout.module.css'
+import Home from '../../Components/Home/Home'
 import AuxWrapper from '../../HOC/AuxWrapper'
 import Toolbar from '../../Components/Navigation/Toolbar/Toolbar'
 import SideDrawer from '../../Components/Navigation/SideDrawer/SideDrawer'
@@ -30,6 +31,7 @@ class Layout extends Component {
 			<Toolbar drawerToggleClicked={this.sideDrawerToggleHandle} />
 			<SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
 			<main className={classes.Content}>
+				<Route path='/' exact component={Home} />
 				<Route path='/new-post' exact component={PostCreate} />
 				<Route path='/feed' exact component={PostList} />
 			</main>

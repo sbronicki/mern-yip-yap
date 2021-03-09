@@ -22,6 +22,13 @@
 .PostCreate textarea{
     padding: 5px;
 }
+.ButtonContainer{
+    width: 100%;
+    display: grid;
+}
+.ButtonContainer input[type='file']{
+    display: none;
+}
 
 @media(min-width:500px){
     .PostCreate{

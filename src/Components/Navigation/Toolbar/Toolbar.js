@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {Router, Link} from 'react-router-dom'
 // import { BsPersonSquare } from 'react-icons/bs'
 import { IoPersonCircleOutline } from 'react-icons/io5'
@@ -13,7 +14,7 @@ const toolbar = (props) => (
             <Link to='/'><Logo /></Link>
         </div>
         <div className={classes.icon}>
-            <IoPersonCircleOutline size='3em' color="#fff" />
+             <Link to='/profile'><IoPersonCircleOutline size='3em' color="#fff" /></Link>
         </div>
     </header>
 )

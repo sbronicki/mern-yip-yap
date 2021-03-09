@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom'
 //NEED TO: 
 // add skeleton loader
 // not allow posts if missing title or content / disable button
-// savedPosts loaded from db initiallly max of 10, more upon request
+// load more posts upon request
   
 
 function App() {

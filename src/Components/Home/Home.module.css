@@ -1,0 +1,16 @@
+.Home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Home .Logo img{
+    height: 20%;
+}
+.Home p {
+    margin: 0;
+    font-size: 2rem;
+}
+.Home .NavItems {
+    font-size: 1.5rem;
+}
