@@ -30,3 +30,6 @@
     font-size: 10px;
     width: 25%;
 }
+.Signup, .Login{
+    background-color: turquoise;
+}
