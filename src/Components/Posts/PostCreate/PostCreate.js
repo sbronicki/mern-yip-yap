@@ -8,9 +8,12 @@ import PostSavedMessage from './PostSavedMessage/PostSavedMessage'
 
 
 class PostCreate extends Component {
+    imagePreview = ''
     state = { 
         title: '',
         content: '',
+        image: null,
+        imagePreview: null,
         disabled: true,
         displaySavedPostMessage: false
      }
@@ -18,7 +21,17 @@ class PostCreate extends Component {
         const fileSelect = document.getElementById('fileSelect')
         fileSelect.click()
     }
-    onChangeHandler = (e) => {
+    onImageSelectedHandler = (e) => {
+        const file = e.target.files[0]
+        const reader = new FileReader()
+
+        reader.onload = () => {
+            this.imagePreview = reader.result
+            this.setState({image: file, imagePreview: this.imagePreview})
+        }
+        reader.readAsDataURL(file)
+    }
+    onInputChangeHandler = (e) => {
         if(e.target.id === 'inputElement') {
             this.setState({title: e.target.value})
         }
@@ -51,25 +64,32 @@ class PostCreate extends Component {
     } 
     render() {
         return(
+            <div className={classes.PostCreateContainer}>
             <div className={classes.PostCreate}>
                 <Input 
                     id='inputElement'
                     type="text" 
                     placeholder="Post Title"
-                    onChange={this.onChangeHandler} />
+                    onChange={this.onInputChangeHandler} />
                 <Input
                     id='textAreaElement'
                     inputtype='textarea'
                     cols="30" 
                     rows="6" 
                     placeholder="Post Content" 
-                    onChange={this.onChangeHandler} />
+                    onChange={this.onInputChangeHandler} />
                     <PostSavedMessage displaySavedPostMessage={this.state.displaySavedPostMessage} />
                 <div className={classes.ButtonContainer}>
                     <Button disabled={this.state.disabled} clicked={this.savePostHandler} btnType='SavePost'>Save Post</Button>
-                    <Input type="file" id='fileSelect'/>
+                    <Input onChange={this.onImageSelectedHandler} type="file" id='fileSelect'/>
                     <Button clicked={this.fileSelectClick} btnType='ImageUpload'>Upload Image</Button>
                 </div>
+            </div>
+            {this.state.image ? 
+                <div>
+                    <p>Preview: {this.state.image.name}</p>
+                    <img src={this.state.imagePreview} alt={this.state.image.name}/>
+                </div> : null}
             </div>
         )
     }

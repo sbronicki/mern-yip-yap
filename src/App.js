@@ -3,8 +3,11 @@ import {BrowserRouter} from 'react-router-dom'
 
 //NEED TO: 
 // add skeleton loader
-// not allow posts if missing title or content / disable button
+// hide sidedrawer when navitem selected
 // load more posts upon request
+// add images to posts 
+// add user auth 
+// redux
   
 
 function App() {

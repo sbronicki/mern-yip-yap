@@ -4,20 +4,21 @@ import axios from 'axios'
 
 import classes from './PostList.module.css'
 import Post from '../PostCreate/Post/Post'
+import PostCreate from '../PostCreate/PostCreate'
 
 class PostList extends Component{
     state = {
         posts: []
     }
     // postSelectedHandler = (id) => {
-    //     this.setState({selectedPostId: id});
+    //     // this.setState({selectedPostId: id});
+    //     console.log('post selected')
     // }
     editPostHandler = (e) => {
-        console.log('edit')
-        // let post = e.target.parentElement.parentElement
-        // let postId = e.target.parentElement.parentElement.id
-        // console.log(post)
-        // console.log(postId)
+        let title = e.target.parentElement.parentElement.children[0].innerText
+        let content = e.target.parentElement.parentElement.children[1].innerText
+        let postId = e.target.parentElement.parentElement.id
+        console.log(postId, title, content)
     }
     deletePostHandler = (e) => {
         const postId = e.target.parentElement.parentElement.id
@@ -64,13 +65,13 @@ class PostList extends Component{
                     content={post.content}
                     editPost={this.editPostHandler}
                     deletePost={this.deletePostHandler}
-                    // clicked={() => this.postSelectedHandler(post.id)}
+                    // clicked={() => this.postSelectedHandler}
                      />;
             });
         }
         return(
             <ul className={classes.PostList}>   
-                {this.state.posts.length > 0 ? posts : <p>NO POSTS ADDED YET!!!</p>}
+                {this.state.posts.length > 0 ? posts: <p>NO POSTS ADDED YET!!!</p>}
             </ul>
         )
     }

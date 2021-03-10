@@ -14,7 +14,9 @@ const toolbar = (props) => (
             <Link to='/'><Logo /></Link>
         </div>
         <div className={classes.icon}>
-             <Link to='/profile'><IoPersonCircleOutline size='3em' color="#fff" /></Link>
+            <Link to='/profile'>
+                 <IoPersonCircleOutline size='3em' color="#fff" />
+            </Link>
         </div>
     </header>
 )
