@@ -22,14 +22,16 @@ class PostCreate extends Component {
         fileSelect.click()
     }
     onImageSelectedHandler = (e) => {
-        const file = e.target.files[0]
-        const reader = new FileReader()
+        if(e.target.files.length === 1){
+            const file = e.target.files[0]
+            const reader = new FileReader()
 
-        reader.onload = () => {
-            this.imagePreview = reader.result
-            this.setState({image: file, imagePreview: this.imagePreview})
-        }
-        reader.readAsDataURL(file)
+            reader.onload = () => {
+                this.imagePreview = reader.result
+                this.setState({image: file, imagePreview: this.imagePreview})
+            }
+            reader.readAsDataURL(file)
+        } else return
     }
     onInputChangeHandler = (e) => {
         if(e.target.id === 'inputElement') {

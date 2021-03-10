@@ -13,6 +13,9 @@
 .PostCreateContainer img{
     max-height: 250px;
 }
+.PostCreateContainer p {
+    font-weight: bold;
+}
 .PostCreate{
     display: flex;
     flex-direction: column;
