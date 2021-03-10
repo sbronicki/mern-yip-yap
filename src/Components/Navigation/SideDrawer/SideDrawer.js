@@ -19,7 +19,7 @@ const sideDrawer = (props) => {
                     <Link to='/'><Logo /></Link>
                 </div>
                 <nav>
-                    <NavItems />
+                    <NavItems LoggedIn />
                 </nav>
             </div>
         </AuxWrapper>

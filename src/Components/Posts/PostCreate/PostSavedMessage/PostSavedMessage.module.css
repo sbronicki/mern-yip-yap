@@ -1,0 +1,18 @@
+.PostSavedMessage {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: violet;
+    margin-top: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 3px #ccc;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 7px;
+    padding: 5px;
+}
+.PostSavedMessage p {
+    padding: 0;
+    margin: 0;
+}

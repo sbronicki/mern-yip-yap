@@ -8,6 +8,7 @@
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
     padding: 5px;
+    box-sizing: border-box;
 }
 .SignupLoginFormTemplate input{
     width: 100%;

@@ -22,7 +22,7 @@ class PostList extends Component{
     deletePostHandler = (e) => {
         const postId = e.target.parentElement.parentElement.id
         axios
-        .delete('http://localhost:4200/posts/' + postId)
+        .delete('/posts/' + postId)
         .then((res) => {
             let updatedPosts  = this.state.posts.filter(post => post._id !== postId)
             if(this.state.posts.length - 1 === 0){
@@ -36,7 +36,7 @@ class PostList extends Component{
     }
     componentDidMount() {
         axios
-        .get('http://localhost:4200/posts')
+        .get('/posts')
         .then(response => {
             const posts = response.data.posts.slice(0, 5)
             const updatedPosts = posts.map(post => {

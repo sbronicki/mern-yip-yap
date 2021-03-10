@@ -1,0 +1,21 @@
+.Input{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+}
+.Label{
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+.InputElement{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    font-family: monospace;
+    padding: 0;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+} 
