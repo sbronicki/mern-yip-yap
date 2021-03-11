@@ -15,9 +15,9 @@ class PostList extends Component{
     //     console.log('post selected')
     // }
     editPostHandler = (e) => {
-        let title = e.target.parentElement.parentElement.children[0].innerText
-        let content = e.target.parentElement.parentElement.children[1].innerText
-        let postId = e.target.parentElement.parentElement.id
+        let title = e.target.parentElement.parentElement.parentElement.children[0].innerText
+        let content = e.target.parentElement.parentElement.parentElement.children[1].innerText
+        let postId = e.target.parentElement.parentElement.parentElement.id
         console.log(postId, title, content)
     }
     deletePostHandler = (e) => {

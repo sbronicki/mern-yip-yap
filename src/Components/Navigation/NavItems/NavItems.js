@@ -4,7 +4,7 @@ import NavItem from './NavItem/NavItem'
 
 const navItems = (props) => {
     const navItemToggleSideDrawer = () => (
-        console.log('clicked nav item')
+        console.log('close side drawer')
     )
     return (
     props.LoggedIn ? 

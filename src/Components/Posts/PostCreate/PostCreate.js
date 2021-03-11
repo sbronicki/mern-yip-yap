@@ -10,10 +10,12 @@ class PostCreate extends Component {
     state = { 
         title: '',
         content: '',
+        id: '',
         image: null,
         imagePreview: null,
         disabled: true,
-        displaySavedPostMessage: false
+        displaySavedPostMessage: false,
+        editMode: false
      }
 
     imagePreview = ''
@@ -67,6 +69,34 @@ class PostCreate extends Component {
                 this.setState({displaySavedPostMessage: false})
             }, 2000)
     } 
+    updatePostHandler = () => {
+        const post = {
+            id: this.state.id,
+            title: this.state.title,
+            content: this.state.content
+        }
+        axios.put('/posts/' + post.id, post)
+        .then(res => console.log(res))
+    }
+    componentDidMount() {
+        if(this.props.match.params.id){
+        axios.get('/posts/' + this.props.match.params.id)
+        .then(response => {
+            const inputElement = document.getElementById('inputElement')
+            const textAreaElement = document.getElementById('textAreaElement')
+            inputElement.value = response.data.posts.title
+            textAreaElement.value = response.data.posts.content 
+            this.setState(
+                {
+                    editMode: true, 
+                    title: response.data.posts.title, 
+                    content: response.data.posts.content,
+                    id: response.data.posts._id
+                }
+            )
+        })
+        }
+    }
     render() {
         return(
             <div className={classes.PostCreateContainer}>
@@ -87,7 +117,7 @@ class PostCreate extends Component {
                 <div className={classes.ButtonContainer}>
                     <Button 
                         disabled={this.state.disabled} 
-                        clicked={this.savePostHandler} 
+                        clicked={this.state.editMode ? this.updatePostHandler : this.savePostHandler} 
                         btnType='SavePost'>Save Post</Button>
                     <Input 
                         accept='image/*'

@@ -1,3 +1,5 @@
+import { Router, Link } from 'react-router-dom'
+
 import classes from './Post.module.css'
 import Button from '../../../UI/Button/Button'
 
@@ -7,7 +9,7 @@ const post = (props) => (
         <p>{props.content}</p>
         <div className={classes.ButtonContainer}>
             <Button btnType="Delete" clicked={props.deletePost}>Delete</Button>
-            <Button btnType="Edit" clicked={props.editPost}>Edit</Button>
+            <Link to={'/edit-post/' + props.id}><Button btnType="Edit" clicked={props.editPost}>Edit</Button></Link>
         </div>
     </li>
 )

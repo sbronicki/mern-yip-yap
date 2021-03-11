@@ -37,6 +37,7 @@ class Layout extends Component {
 				<Route path='/signup' btnType='Sign up' exact component={Signup} />
 				<Route path='/login' exact component={Login} />
 				<Route path='/new-post' exact component={PostCreate} />
+				<Route path='/edit-post/:id' component={PostCreate} />
 				<Route path='/feed' exact component={PostList} />
 			</main>
 		</AuxWrapper>
