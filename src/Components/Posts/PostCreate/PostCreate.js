@@ -6,9 +6,7 @@ import Button from '../../UI/Button/Button'
 import Input from '../../UI/Input/Input'
 import PostSavedMessage from './PostSavedMessage/PostSavedMessage'
 
-
 class PostCreate extends Component {
-    imagePreview = ''
     state = { 
         title: '',
         content: '',
@@ -17,20 +15,25 @@ class PostCreate extends Component {
         disabled: true,
         displaySavedPostMessage: false
      }
+
+    imagePreview = ''
+
     fileSelectClick = () => {
         const fileSelect = document.getElementById('fileSelect')
         fileSelect.click()
     }
     onImageSelectedHandler = (e) => {
         if(e.target.files.length === 1){
-            const file = e.target.files[0]
-            const reader = new FileReader()
+            if(e.target.files[0].type.substr(0,5) === 'image'){
+                const file = e.target.files[0]
+                const reader = new FileReader()
 
-            reader.onload = () => {
-                this.imagePreview = reader.result
-                this.setState({image: file, imagePreview: this.imagePreview})
+                reader.onload = () => {
+                    this.imagePreview = reader.result
+                    this.setState({image: file, imagePreview: this.imagePreview})
+                }
+                reader.readAsDataURL(file)
             }
-            reader.readAsDataURL(file)
         } else return
     }
     onInputChangeHandler = (e) => {
@@ -80,11 +83,20 @@ class PostCreate extends Component {
                     rows="6" 
                     placeholder="Post Content" 
                     onChange={this.onInputChangeHandler} />
-                    <PostSavedMessage displaySavedPostMessage={this.state.displaySavedPostMessage} />
+                <PostSavedMessage displaySavedPostMessage={this.state.displaySavedPostMessage} />
                 <div className={classes.ButtonContainer}>
-                    <Button disabled={this.state.disabled} clicked={this.savePostHandler} btnType='SavePost'>Save Post</Button>
-                    <Input onChange={this.onImageSelectedHandler} type="file" id='fileSelect'/>
-                    <Button clicked={this.fileSelectClick} btnType='ImageUpload'>Upload Image</Button>
+                    <Button 
+                        disabled={this.state.disabled} 
+                        clicked={this.savePostHandler} 
+                        btnType='SavePost'>Save Post</Button>
+                    <Input 
+                        accept='image/*'
+                        onChange={this.onImageSelectedHandler} 
+                        type="file" 
+                        id='fileSelect'/>
+                    <Button 
+                    clicked={this.fileSelectClick} 
+                    btnType='ImageUpload'>Upload Image</Button>
                 </div>
             </div>
             {this.state.image ? 
