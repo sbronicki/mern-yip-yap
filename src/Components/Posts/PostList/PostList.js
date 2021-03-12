@@ -18,7 +18,7 @@ class PostList extends Component{
         let title = e.target.parentElement.parentElement.parentElement.children[0].innerText
         let content = e.target.parentElement.parentElement.parentElement.children[1].innerText
         let postId = e.target.parentElement.parentElement.parentElement.id
-        console.log(postId, title, content)
+        // console.log(postId, title, content)
     }
     deletePostHandler = (e) => {
         const postId = e.target.parentElement.parentElement.id

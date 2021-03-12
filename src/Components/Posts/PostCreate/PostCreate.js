@@ -64,7 +64,7 @@ class PostCreate extends Component {
             inputElement.value = ''
             textAreaElement.value = ''
             this.setState({title: '', content: '', disabled: true, displaySavedPostMessage: true})
-            });
+            })
             setTimeout(() => {
                 this.setState({displaySavedPostMessage: false})
             }, 2000)
@@ -75,8 +75,25 @@ class PostCreate extends Component {
             title: this.state.title,
             content: this.state.content
         }
-        axios.put('/posts/' + post.id, post)
-        .then(res => console.log(res))
+        axios
+        .put('/posts/' + post.id, post)
+        .then(response => {
+            const inputElement = document.getElementById('inputElement')
+            const textAreaElement = document.getElementById('textAreaElement')
+
+            inputElement.value = ''
+            textAreaElement.value = ''
+
+            this.setState(
+                {title: '', 
+                content: '', 
+                disabled: true, 
+                displaySavedPostMessage: true})
+            })
+            .catch(error => console.log(error))
+            setTimeout(() => {
+                this.setState({displaySavedPostMessage: false})
+            }, 2000)
     }
     componentDidMount() {
         if(this.props.match.params.id){
@@ -87,14 +104,14 @@ class PostCreate extends Component {
             inputElement.value = response.data.posts.title
             textAreaElement.value = response.data.posts.content 
             this.setState(
-                {
-                    editMode: true, 
-                    title: response.data.posts.title, 
-                    content: response.data.posts.content,
-                    id: response.data.posts._id
-                }
-            )
-        })
+                    {
+                        editMode: true, 
+                        title: response.data.posts.title, 
+                        content: response.data.posts.content,
+                        id: response.data.posts._id
+                    }
+                )
+            })
         }
     }
     render() {
@@ -130,7 +147,7 @@ class PostCreate extends Component {
                 </div>
             </div>
             {this.state.image ? 
-                <div>
+                <div className={classes.ImagePreviewContainer}>
                     <p>Preview: {this.state.image.name}</p>
                     <img src={this.state.imagePreview} alt={this.state.image.name}/>
                 </div> : null}
