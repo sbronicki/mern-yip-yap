@@ -42,20 +42,6 @@ router.post('/posts',(req, res, next) => {
         })
     })
 })
-// router.post('/posts', multer({storage: storage}).single('image'),(req, res, next) => {
-//     const post = new Post({
-//         title: req.body.title,
-//         content: req.body.content,
-//         image: req.body.image
-//     })
-//     post.save()
-//     .then(savedPost => {
-//         res.status(201).json({
-//             message: 'Post added',
-//             postId: savedPost._id
-//         })
-//     })
-// })
 //delete saved posts
 router.delete('/posts/:id', (req, res, next) => {
     Post.deleteOne({_id:  req.params.id})

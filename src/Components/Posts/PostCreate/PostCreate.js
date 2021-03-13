@@ -63,10 +63,6 @@ class PostCreate extends Component {
             content: this.state.content,
             image: this.state.imagePreview
         }
-        // const post = new FormData()
-        // post.append('title', this.state.title)
-        // post.append('content', this.state.content)
-        // post.append('image', this.state.imagePreview)
         axios
         .post('/posts', post)
         .then(response => {
@@ -74,7 +70,14 @@ class PostCreate extends Component {
             const textAreaElement = document.getElementById('textAreaElement')
             inputElement.value = ''
             textAreaElement.value = ''
-            this.setState({title: '', content: '', id: '', image: null, imagePreview: null, disabled: true, displaySavedPostMessage: true})
+            this.setState({
+                title: '', 
+                content: '', 
+                id: '', 
+                image: null, 
+                imagePreview: null, 
+                disabled: true,
+                displaySavedPostMessage: true})
             })
             .catch(error => console.log('file too big'))
             setTimeout(() => {
@@ -85,7 +88,8 @@ class PostCreate extends Component {
         const post = {
             id: this.state.id,
             title: this.state.title,
-            content: this.state.content
+            content: this.state.content,
+            image: this.state.imagePreview
         }
         axios
         .put('/posts/' + post.id, post)
@@ -97,10 +101,15 @@ class PostCreate extends Component {
             textAreaElement.value = ''
 
             this.setState(
-                {title: '', 
-                content: '', 
-                disabled: true, 
-                displaySavedPostMessage: true})
+                {
+                    id: '', 
+                    title: '', 
+                    content: '', 
+                    image: null, 
+                    imagePreview: null, 
+                    disabled: true, 
+                    displaySavedPostMessage: true
+                })
             })
             .catch(error => console.log(error))
             setTimeout(() => {
@@ -115,6 +124,18 @@ class PostCreate extends Component {
             const textAreaElement = document.getElementById('textAreaElement')
             inputElement.value = response.data.posts.title
             textAreaElement.value = response.data.posts.content 
+            if(response.data.posts.image){
+                this.setState(
+                    {
+                        editMode: true, 
+                        title: response.data.posts.title, 
+                        content: response.data.posts.content,
+                        id: response.data.posts._id,
+                        image: true,
+                        imagePreview: response.data.posts.image
+                    }
+                )
+            } 
             this.setState(
                     {
                         editMode: true, 
