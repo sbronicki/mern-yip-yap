@@ -12,6 +12,9 @@
 .Post h2, .Post p {
     margin: 5px;
 }
+.Post img {
+    max-width: 300px;
+}
 .ButtonContainer{
     width: 100%;
     display: flex;

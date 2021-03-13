@@ -5,6 +5,7 @@ import classes from './PostCreate.module.css'
 import Button from '../../UI/Button/Button'
 import Input from '../../UI/Input/Input'
 import PostSavedMessage from './PostSavedMessage/PostSavedMessage'
+import ImageTooBigMessage from './ImageTooBigMessage/ImageTooBigMessage'
 
 class PostCreate extends Component {
     state = { 
@@ -14,6 +15,7 @@ class PostCreate extends Component {
         image: null,
         imagePreview: null,
         disabled: true,
+        displayImageTooBigMessage: false,
         displaySavedPostMessage: false,
         editMode: false
      }
@@ -25,18 +27,22 @@ class PostCreate extends Component {
         fileSelect.click()
     }
     onImageSelectedHandler = (e) => {
-        if(e.target.files.length === 1){
+        if(e.target.files.length === 1 && e.target.files[0].size < 70000){
             if(e.target.files[0].type.substr(0,5) === 'image'){
                 const file = e.target.files[0]
                 const reader = new FileReader()
-
                 reader.onload = () => {
                     this.imagePreview = reader.result
                     this.setState({image: file, imagePreview: this.imagePreview})
                 }
                 reader.readAsDataURL(file)
-            }
-        } else return
+            } 
+        } else if(e.target.files[0].size > 70000) {
+         this.setState({displayImageTooBigMessage: true})
+         setTimeout(() => {
+             this.setState({displayImageTooBigMessage: false})
+         }, 3000)
+     } 
     }
     onInputChangeHandler = (e) => {
         if(e.target.id === 'inputElement') {
@@ -54,8 +60,13 @@ class PostCreate extends Component {
     savePostHandler = () => {
         const post = {
             title: this.state.title,
-            content: this.state.content
+            content: this.state.content,
+            image: this.state.imagePreview
         }
+        // const post = new FormData()
+        // post.append('title', this.state.title)
+        // post.append('content', this.state.content)
+        // post.append('image', this.state.imagePreview)
         axios
         .post('/posts', post)
         .then(response => {
@@ -63,8 +74,9 @@ class PostCreate extends Component {
             const textAreaElement = document.getElementById('textAreaElement')
             inputElement.value = ''
             textAreaElement.value = ''
-            this.setState({title: '', content: '', disabled: true, displaySavedPostMessage: true})
+            this.setState({title: '', content: '', id: '', image: null, imagePreview: null, disabled: true, displaySavedPostMessage: true})
             })
+            .catch(error => console.log('file too big'))
             setTimeout(() => {
                 this.setState({displaySavedPostMessage: false})
             }, 2000)
@@ -130,6 +142,7 @@ class PostCreate extends Component {
                     rows="6" 
                     placeholder="Post Content" 
                     onChange={this.onInputChangeHandler} />
+                <ImageTooBigMessage displayimageTooBigMessage={this.state.displayImageTooBigMessage} />
                 <PostSavedMessage displaySavedPostMessage={this.state.displaySavedPostMessage} />
                 <div className={classes.ButtonContainer}>
                     <Button 

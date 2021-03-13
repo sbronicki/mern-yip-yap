@@ -55,7 +55,7 @@ class PostList extends Component{
         });
     }
     render(){
-        let posts = <li style={{textAlign: 'center'}}>Something went wrong!</li>;
+        let posts = <li style={{textAlign: 'center'}}>Something went wrong!</li>
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return <Post 
@@ -65,6 +65,9 @@ class PostList extends Component{
                     content={post.content}
                     editPost={this.editPostHandler}
                     deletePost={this.deletePostHandler}
+                    image={
+                        this.state.posts[this.state.posts.indexOf(post)].image ? 
+                        this.state.posts[this.state.posts.indexOf(post)].image : null}
                     // clicked={() => this.postSelectedHandler}
                      />;
             });
