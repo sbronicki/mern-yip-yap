@@ -135,8 +135,8 @@ class PostCreate extends Component {
                         imagePreview: response.data.posts.image
                     }
                 )
-            } 
-            this.setState(
+            } else {
+                this.setState(
                     {
                         editMode: true, 
                         title: response.data.posts.title, 
@@ -144,6 +144,7 @@ class PostCreate extends Component {
                         id: response.data.posts._id
                     }
                 )
+            }
             })
         }
     }

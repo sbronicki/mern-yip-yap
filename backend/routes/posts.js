@@ -53,6 +53,7 @@ router.put('/posts/:id', (req, res, next) => {
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
+        image: req.body.image,
         _id: req.body.id
     })
     Post.updateOne({_id: post._id}, post)
