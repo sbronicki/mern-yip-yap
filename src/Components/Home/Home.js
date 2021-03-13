@@ -3,13 +3,13 @@ import Logo from '../Logo/Logo'
 import NavItems from '../Navigation/NavItems/NavItems'
 import Footer from '../Footer/Footer'
 
-const home = () => (
+const home = (props) => (
     <div className={classes.Home}>
         <div className={classes.Logo}>
             <Logo />
         </div>
         <nav className={classes.NavItems}>
-            <NavItems LoggedIn /> 
+            <NavItems /> 
         </nav>
         <Footer />
     </div>

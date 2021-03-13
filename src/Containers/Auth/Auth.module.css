@@ -1,4 +1,4 @@
-.SignupLoginFormTemplate {
+.Auth {
     margin-top:10px;
     display:flex;
     align-items: center;
@@ -10,7 +10,7 @@
     padding: 5px;
     box-sizing: border-box;
 }
-.SignupLoginFormTemplate input{
+.Auth input{
     width: 100%;
     border-top: none;
     border-left: none;

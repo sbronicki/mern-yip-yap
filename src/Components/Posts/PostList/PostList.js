@@ -4,7 +4,6 @@ import axios from 'axios'
 
 import classes from './PostList.module.css'
 import Post from '../PostCreate/Post/Post'
-import PostCreate from '../PostCreate/PostCreate'
 
 class PostList extends Component{
     state = {
