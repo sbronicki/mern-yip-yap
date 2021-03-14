@@ -9,7 +9,7 @@ const home = (props) => (
             <Logo />
         </div>
         <nav className={classes.NavItems}>
-            <NavItems /> 
+            <NavItems LoggedIn/> 
         </nav>
         <Footer />
     </div>

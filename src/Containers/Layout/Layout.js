@@ -6,8 +6,8 @@ import Home from '../../Components/Home/Home'
 import AuxWrapper from '../../HOC/AuxWrapper'
 import Toolbar from '../../Components/Navigation/Toolbar/Toolbar'
 import SideDrawer from '../../Components/Navigation/SideDrawer/SideDrawer'
-import PostCreate from '../../Components/Posts/PostCreate/PostCreate'
-import PostList from '../../Components/Posts/PostList/PostList'
+import PostCreate from '../Posts/PostCreate/PostCreate'
+import PostList from '../Posts/PostList/PostList'
 import Auth from '../Auth/Auth'
 
 class Layout extends Component {

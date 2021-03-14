@@ -2,8 +2,8 @@ import { Component } from 'react'
 import axios from 'axios'
 
 import classes from './PostCreate.module.css'
-import Button from '../../UI/Button/Button'
-import Input from '../../UI/Input/Input'
+import Button from '../../../Components/UI/Button/Button'
+import Input from '../../../Components/UI/Input/Input'
 import PostSavedMessage from './PostSavedMessage/PostSavedMessage'
 import ImageTooBigMessage from './ImageTooBigMessage/ImageTooBigMessage'
 

@@ -1,7 +1,7 @@
 import { Router, Link } from 'react-router-dom'
 
 import classes from './Post.module.css'
-import Button from '../../../UI/Button/Button'
+import Button from '../../../../Components/UI/Button/Button'
 
 const post = (props) => (
     <li id={props.id} className={classes.Post}>
