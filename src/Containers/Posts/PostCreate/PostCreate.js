@@ -1,11 +1,14 @@
 import { Component } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
 import classes from './PostCreate.module.css'
 import Button from '../../../Components/UI/Button/Button'
 import Input from '../../../Components/UI/Input/Input'
-import PostSavedMessage from './PostSavedMessage/PostSavedMessage'
-import ImageTooBigMessage from './ImageTooBigMessage/ImageTooBigMessage'
+import PostSavedMessage from '../../../Components/PostSavedMessage/PostSavedMessage'
+import ImageTooBigMessage from '../../../Components/ImageTooBigMessage/ImageTooBigMessage'
+import * as postCreateActions from '../../../store/actions/index'
+
 
 class PostCreate extends Component {
     state = { 
@@ -15,9 +18,9 @@ class PostCreate extends Component {
         image: null,
         imagePreview: null,
         disabled: true,
+        editMode: false,
         displayImageTooBigMessage: false,
-        displaySavedPostMessage: false,
-        editMode: false
+        displaySavedPostMessage: false
      }
 
     imagePreview = ''
@@ -41,7 +44,7 @@ class PostCreate extends Component {
          this.setState({displayImageTooBigMessage: true})
          setTimeout(() => {
              this.setState({displayImageTooBigMessage: false})
-         }, 3000)
+         }, 2000)
      } 
     }
     onInputChangeHandler = (e) => {
@@ -58,96 +61,82 @@ class PostCreate extends Component {
         }
     }
     savePostHandler = () => {
-        const post = {
+        const postData = {
             title: this.state.title,
             content: this.state.content,
             image: this.state.imagePreview
         }
-        axios
-        .post('/posts', post)
-        .then(response => {
-            const inputElement = document.getElementById('inputElement')
-            const textAreaElement = document.getElementById('textAreaElement')
-            inputElement.value = ''
-            textAreaElement.value = ''
-            this.setState({
-                title: '', 
-                content: '', 
-                id: '', 
-                image: null, 
-                imagePreview: null, 
-                disabled: true,
-                displaySavedPostMessage: true})
-            })
-            .catch(error => console.log('file too big'))
-            setTimeout(() => {
-                this.setState({displaySavedPostMessage: false})
-            }, 2000)
+        this.props.onSavePost(postData)
+        this.setState({
+            title: '', 
+            content: '', 
+            id: '', 
+            image: null, 
+            imagePreview: null, 
+            disabled: true,
+            displaySavedPostMessage: true
+        })
+    
+        const inputElement = document.getElementById('inputElement')
+        const textAreaElement = document.getElementById('textAreaElement')
+
+        inputElement.value = this.props.post.title
+        textAreaElement.value = this.props.post.content
+
+        setTimeout(() => {
+            this.setState({displaySavedPostMessage: false})
+        }, 2000)
     } 
     updatePostHandler = () => {
-        const post = {
-            id: this.state.id,
-            title: this.state.title,
-            content: this.state.content,
-            image: this.state.imagePreview
-        }
-        axios
-        .put('/posts/' + post.id, post)
-        .then(response => {
-            const inputElement = document.getElementById('inputElement')
-            const textAreaElement = document.getElementById('textAreaElement')
+        // const post = {
+        //     id: this.state.id,
+        //     title: this.state.title,
+        //     content: this.state.content,
+        //     image: this.state.imagePreview
+        // }
+        // axios
+        // .put('/posts/' + post.id, post)
+        // .then(response => {
+        //     const inputElement = document.getElementById('inputElement')
+        //     const textAreaElement = document.getElementById('textAreaElement')
 
-            inputElement.value = ''
-            textAreaElement.value = ''
+        //     inputElement.value = ''
+        //     textAreaElement.value = ''
 
-            this.setState(
-                {
-                    id: '', 
-                    title: '', 
-                    content: '', 
-                    image: null, 
-                    imagePreview: null, 
-                    disabled: true, 
-                    displaySavedPostMessage: true
-                })
-            })
-            .catch(error => console.log(error))
-            setTimeout(() => {
-                this.setState({displaySavedPostMessage: false})
-            }, 2000)
+        //     this.setState(
+        //         {
+        //             id: '', 
+        //             title: '', 
+        //             content: '', 
+        //             image: null, 
+        //             imagePreview: null, 
+        //             disabled: true, 
+        //             displaySavedPostMessage: true
+        //         })
+        //     })
+        //     .catch(error => console.log(error))
+        //     setTimeout(() => {
+        //         this.setState({displaySavedPostMessage: false})
+        //     }, 2000)
     }
     componentDidMount() {
         if(this.props.match.params.id){
-        axios.get('/posts/' + this.props.match.params.id)
-        .then(response => {
+            const postId = this.props.match.params.id
+            this.props.onGetPostToUpdate(postId)
             const inputElement = document.getElementById('inputElement')
             const textAreaElement = document.getElementById('textAreaElement')
-            inputElement.value = response.data.posts.title
-            textAreaElement.value = response.data.posts.content 
-            if(response.data.posts.image){
-                this.setState(
-                    {
-                        editMode: true, 
-                        title: response.data.posts.title, 
-                        content: response.data.posts.content,
-                        id: response.data.posts._id,
-                        image: true,
-                        imagePreview: response.data.posts.image
-                    }
-                )
-            } else {
-                this.setState(
-                    {
-                        editMode: true, 
-                        title: response.data.posts.title, 
-                        content: response.data.posts.content,
-                        id: response.data.posts._id
-                    }
-                )
+            inputElement.value = this.props.post.title
+            textAreaElement.value = this.props.post.content 
+            if(this.props.post.image) {
+                this.setState({
+                    editMode: true,
+                    image: true,
+                    imagePreview: this.props.post.image
+                })
             }
-            })
         }
     }
+       
     render() {
         return(
             <div className={classes.PostCreateContainer}>
@@ -190,4 +179,19 @@ class PostCreate extends Component {
         )
     }
 }
-export default PostCreate
+
+const mapStateToProps = state => {
+    return {
+        post: state.postCreate.post,
+        error: state.postCreate.error
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        onSavePost: (postData) => dispatch(postCreateActions.savePost(postData)),
+        onGetPostToUpdate: (postId) => dispatch(postCreateActions.getPostToUpdate(postId)),
+        onUpdatePost: (postId) => dispatch(postCreateActions.updatePost(postId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostCreate)
