@@ -1,10 +1,3 @@
-export {
-    savePost,
-    getPostToUpdate,
-    updatePost
-} from './postCreateActions'
-
-export {
-    getPosts,
-    deletePost
-} from './postListActions'
+export { auth } from './authActions';
+export { getPosts, deletePost } from './postListActions'
+export {savePost, getPostToUpdate, updatePost} from './postCreateActions'

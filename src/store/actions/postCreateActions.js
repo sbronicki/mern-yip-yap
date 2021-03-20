@@ -1,75 +1,107 @@
 import axios from 'axios'
 
-import * as actionTypes from './actionTypes'
+import * as actionTypes from './actionTypes';
 
-//need save post loading
-
-// save new post 
-export const savePostSucess = (responseData, postData) => {
+// save post
+export const savePostStart = () => {
     return {
-        type: actionTypes.SAVE_POST_SUCCESS,
-        postId: responseData.postId,
-        postData: postData
+        type: actionTypes.SAVE_POST_START,
+        loading: true
     }
 }
-export const savePostFail = (responseData) => {
+export const savePostSuccess = (responseData) => {
     return {
-        type: actionTypes.SAVE_POST_FAIL
+        type: actionTypes.SAVE_POST_SUCCESS,
+        error: false,
+        loading: false
+    }
+}
+export const savePostFail = (error) => {
+    return {
+        type: actionTypes.SAVE_POST_FAIL,
+        loading: false,
+        error: error
     }
 }
 export const savePost = (postData) => {
     return dispatch => {
+        dispatch(savePostStart())
         axios
         .post('/posts', postData)
         .then(response => {
-            dispatch(savePostSucess(response.data, postData))
+            dispatch(savePostSuccess(response.data))
             })
         .catch(error => dispatch(savePostFail()))
     }
 }
-//get post to update
-export const getPostToUpdateSucces = (responseData, postId) => {
+// get post to update 
+export const getPostToUpdateStart = () => {
     return {
-        type: actionTypes.GET_POST_TO_UPDATE_SUCCESS,
-        postData: responseData,
-        postId: postId
+        type: actionTypes.GET_POST_TO_UPDATE_START,
+        loading: true
     }
 }
-export const getPostToUpdateFail = (response) => {
+export const getPostToUpdateSuccess = (responseData) => {
     return {
-        type: actionTypes.GET_POST_TO_UPDATE_FAIL
+        type: actionTypes.GET_POST_TO_UPDATE_SUCCESS,
+        title: responseData.title,
+        content: responseData.content,
+        id: responseData._id,
+        loading: false,
+        error: false,
+        image: responseData.image
+    }
+}
+export const getPostToUpdateFail = (error) => {
+    return {
+        type: actionTypes.GET_POST_TO_UPDATE_FAIL,
+        error: error,
+        loading: false
     }
 }
 export const getPostToUpdate = (postId) => {
     return dispatch => {
+        dispatch(getPostToUpdateStart())
         axios
         .get('/posts/' + postId)
         .then(response => {
-            dispatch(getPostToUpdateSucces(response.data, postId))
+            dispatch(getPostToUpdateSuccess(response.data.posts))
         })
-        .catch(error => dispatch(getPostToUpdateFail()))
+        .catch(error => dispatch(getPostToUpdateFail(error)))
     }
 }
-//update post
-export const updatePostSucces = (responseData, postId) => {
+
+// update post
+export const updatePostStart = () => {
+    return {
+        type: actionTypes.UPDATE_POST_START,
+        loading: true
+    }
+}
+export const updatePostSuccess = (post) => {
     return {
         type: actionTypes.UPDATE_POST_SUCCESS,
-        postData: responseData,
-        postId: postId
+        loading: false,
+        error: false,
     }
 }
-export const updatePostFail = (response) => {
+export const updatePostFail = () => {
     return {
-        type: actionTypes.UPDATE_POST_FAIL
+        type: actionTypes.UPDATE_POST_FAIL,
+        error: true,
+        loading: false
     }
 }
-export const updatePost = (postId) => {
+export const updatePost = (post) => {
     return dispatch => {
+        dispatch(updatePostStart())
+        console.log(post)
         axios
-        .get('/posts/' + postId)
-        .then(response => {
-            dispatch(updatePostSucces(response.data, postId))
-        })
-        .catch(error => dispatch(updatePostFail()))
+			.put('/posts/' + post.id, post)
+			.then((response) => {
+                console.log(response)
+				dispatch(updatePostSuccess(response))
+			})
+			.catch((error) => dispatch(updatePostFail(error)));
     }
 }

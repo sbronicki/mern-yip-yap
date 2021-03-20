@@ -1,0 +1,6 @@
+.PFP {
+	background-color: blueviolet;
+	height: 35%;
+    min-width: 45%;
+    display: flex;
+}
