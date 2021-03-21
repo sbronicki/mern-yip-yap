@@ -7,11 +7,12 @@ import Layout from './Containers/Layout/Layout'
 // paginator /  load more posts upon request
 // better routing
 // add user auth 
-// more robust way of disabling save post button => using touched
+// more robust way of disabling save post button
 // => typing then deleting and submittting blank forms still possible & crashes server lol
 // memory leak after changing image in edit post if switch to feed before settimeout finishes
 // because state is set when time out is finished
-// redux: handle => 
+// add delete image option in post create / edit preview
+// add title and favicon 
   
 
 function App() {

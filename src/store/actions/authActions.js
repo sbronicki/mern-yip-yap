@@ -50,12 +50,12 @@ export const auth = (email, password, isSignup) => {
             dispatch(checkAuthTimeout(response.data.expiresIn))
         })
         .catch(err => {
-            console.log(err.response)
-            if(!isSignup) {
-                dispatch(authFail(err.response.data.message))
-            } else {
-            dispatch(authFail(err.response.data.error.message))
-            }
+            console.log(err)
+            // if(!isSignup) {
+            //     dispatch(authFail(err.response.data.message))
+            // } else {
+            // dispatch(authFail(err.response.data.error.message))
+            // }
         })
 	};
 };
