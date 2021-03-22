@@ -44,7 +44,7 @@ router.put('/:id', checkAuth, (req, res, next) => {
     })
 })
 //get post to edit
-router.use('/:id', checkAuth, (req, res, next) => {
+router.use('/:id', (req, res, next) => {
     Post.findOne({_id: req.params.id})
     .then(posts => {
         res.status(200).json({
@@ -55,7 +55,7 @@ router.use('/:id', checkAuth, (req, res, next) => {
     .catch(e => console.log(e))
 })
 //get saved posts
-router.use('', checkAuth, (req, res, next) => {
+router.use('', (req, res, next) => {
     Post.find().limit(5)
     .then(posts => {
         res.status(200).json({

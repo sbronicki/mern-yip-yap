@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -49,7 +51,7 @@ router.post('/login', (req, res, next) => {
                 email: fetchedUser.email, 
                 userId: fetchedUser._id
             }, 
-            'this_is_the_secret_string_that_is_also_pretty_long', 
+                process.env.ACCESS_TOKEN_SECRET, 
             {
                 expiresIn: '1h'
             })
