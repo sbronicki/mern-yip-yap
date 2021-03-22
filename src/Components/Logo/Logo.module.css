@@ -1,3 +1,4 @@
 .Logo img{
-    height: 55px;
+    box-sizing: border-box;
+    height: 100%;
 }

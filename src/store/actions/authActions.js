@@ -39,23 +39,21 @@ export const auth = (email, password, isSignup) => {
             email: email, 
             password: password
         }
-        let url = '/user/signup'
+        let url = '/api/user/signup'
         if(!isSignup) {
-            url = '/user/login'
+            url = '/api/user/login'
         }
         axios.post(url, authData)
         .then(response => {
             // this is token if logging in 
             dispatch(authSuccess(response.data.token, response.data.localId))
-            dispatch(checkAuthTimeout(response.data.expiresIn))
+            if(!isSignup){
+                dispatch(checkAuthTimeout(response.data.expiresIn))
+            }
         })
         .catch(err => {
             console.log(err)
-            // if(!isSignup) {
-            //     dispatch(authFail(err.response.data.message))
-            // } else {
-            // dispatch(authFail(err.response.data.error.message))
-            // }
+            dispatch(authFail(err))
         })
 	};
 };

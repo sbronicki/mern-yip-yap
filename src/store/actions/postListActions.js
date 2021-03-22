@@ -24,7 +24,7 @@ export const getPosts = () => {
     return dispatch => {
         dispatch(getPostsStart())
         axios
-			.get('/posts')
+			.get('/api/posts')
 			.then((response) => {
                 dispatch(getPostsSuccess(response.data.posts))
 			})
@@ -42,7 +42,7 @@ export const deletePostStart = () => {
 export const deletePostSuccess = (response) => {
     return {
         type: actionTypes.DELETE_POST_SUCCESS,
-        postId: response.config.url.substr(7)
+        postId: response.config.url.substr(11)
     }
 }
 export const deletePostFail = (error) => {
@@ -55,7 +55,7 @@ export const deletePost = (postId) => {
     return dispatch => {
         dispatch(deletePostStart())
         	axios
-			.delete('/posts/' + postId)
+			.delete('/api/posts/' + postId)
 			.then((response) => {
                 dispatch(deletePostSuccess(response))
 			})

@@ -1,12 +1,12 @@
 const express = require('express')
 
 const Post = require('../models/post');
-// const checkAuth = require('../middleware/check-auth')
+const checkAuth = require('../middleware/check-auth')
 
 const router = express.Router()
 
 //save post
-router.post('/posts', (req, res, next) => {
+router.post('', checkAuth, (req, res, next) => {
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
@@ -21,13 +21,13 @@ router.post('/posts', (req, res, next) => {
     })
 })
 //delete saved posts
-router.delete('/posts/:id', (req, res, next) => {
+router.delete('/:id', checkAuth, (req, res, next) => {
     Post.deleteOne({_id:  req.params.id})
     .then(result => console.log('deleted'))
     res.status(200).json({message: 'Post deleted'})
 })
 // put edited post
-router.put('/posts/:id', (req, res, next) => {
+router.put('/:id', checkAuth, (req, res, next) => {
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
@@ -44,7 +44,7 @@ router.put('/posts/:id', (req, res, next) => {
     })
 })
 //get post to edit
-router.use('/posts/:id', (req, res, next) => {
+router.use('/:id', checkAuth, (req, res, next) => {
     Post.findOne({_id: req.params.id})
     .then(posts => {
         res.status(200).json({
@@ -55,7 +55,7 @@ router.use('/posts/:id', (req, res, next) => {
     .catch(e => console.log(e))
 })
 //get saved posts
-router.use('/posts', (req, res, next) => {
+router.use('', checkAuth, (req, res, next) => {
     Post.find().limit(5)
     .then(posts => {
         res.status(200).json({

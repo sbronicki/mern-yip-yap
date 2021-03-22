@@ -22,13 +22,12 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 axios.defaults.baseURL = 'http://localhost:4200'
-// axios.interceptors.request.use((req) => {
-// 	const token = store.getState().auth.token;
-// 	req.headers.Authorization = token;
-// 		console.log(req)
 
-//     return req;
-// });
+axios.interceptors.request.use(function (config) {
+	const token = store.getState().auth.token;
+	config.headers.Authorization = token
+	return config;
+  }, null, { synchronous: true });
 
 ReactDOM.render(
 	<Provider store={store}>

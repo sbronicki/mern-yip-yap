@@ -1,0 +1,12 @@
+.Header {
+	padding: 0;
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: hotpink;
+	width: 100%;
+}
+.Header img {
+	width: 100%;
+}

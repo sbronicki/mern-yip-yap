@@ -1,3 +1,18 @@
 .PostsSection {
-	background-color: dodgerblue;
+	margin: 0px;
+	padding: 3px;
+	border: 1px solid #eee;
+	box-shadow: 0 2px 3px #ccc;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+.PostsSection p {
+	font-weight: bold;
+	margin: 5px;
+}
+.PostsSection h3 {
+	margin: 5px;
 }

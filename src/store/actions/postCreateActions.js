@@ -27,7 +27,7 @@ export const savePost = (postData) => {
     return dispatch => {
         dispatch(savePostStart())
         axios
-        .post('/posts', postData)
+        .post('/api/posts', postData)
         .then(response => {
             dispatch(savePostSuccess(response.data))
             })
@@ -63,7 +63,7 @@ export const getPostToUpdate = (postId) => {
     return dispatch => {
         dispatch(getPostToUpdateStart())
         axios
-        .get('/posts/' + postId)
+        .get('/api/posts/' + postId)
         .then(response => {
             dispatch(getPostToUpdateSuccess(response.data.posts))
         })
@@ -97,7 +97,7 @@ export const updatePost = (post) => {
         dispatch(updatePostStart())
         console.log(post)
         axios
-			.put('/posts/' + post.id, post)
+			.put('/api/posts/' + post.id, post)
 			.then((response) => {
                 console.log(response)
 				dispatch(updatePostSuccess(response))

@@ -1,3 +1,7 @@
+.Layout {
+    height: 100vh;
+    box-sizing: border-box;
+}
 .Content {
 	margin-top: 60px;
 	display: flex;

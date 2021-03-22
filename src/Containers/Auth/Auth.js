@@ -29,9 +29,9 @@ class Auth extends Component {
 		}
 	};
 	componentDidMount() {
-		if (this.props.match.url === '/user/signup') {
+		if (this.props.match.url === '/signup') {
 			this.setState({ isSignup: true });
-		} else if (this.props.match.url === '/user/login') {
+		} else if (this.props.match.url === '/login') {
 			this.setState({ isSignup: false });
 		}
 	}
@@ -41,15 +41,18 @@ class Auth extends Component {
                 {this.props.error ? <Error errorMessage={this.props.error} /> : null}
                 {!this.props.loading ? 
                 <form onSubmit={this.submitHandler}>
-                <Input id="emailInput" type="email" placeholder="Email" onChange={this.onInputChangeHandler} />
-                <Input
-                    id="passwordInput"
-                    type="password"
-                    placeholder="Password"
-                    onChange={this.onInputChangeHandler}
-                />
-                <Button btnType="Login">{this.state.isSignup ? 'Sign up' : 'Log in'}</Button>
-            </form> : <Spinner />}
+					<Input 
+						id="emailInput" 
+						type="email" 
+						placeholder="Email" 
+						onChange={this.onInputChangeHandler} />
+					<Input
+						id="passwordInput"
+						type="password"
+						placeholder="Password"
+						onChange={this.onInputChangeHandler}/>
+					<Button btnType="Login">{this.state.isSignup ? 'Sign up' : 'Log in'}</Button>
+           		</form> : <Spinner />}
 			</div>
 		);
 	}

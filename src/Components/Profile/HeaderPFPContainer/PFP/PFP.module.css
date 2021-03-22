@@ -1,0 +1,22 @@
+.PFP {
+	height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    padding: 5px;
+    margin: 0;
+}
+.PFP img{
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 10%;
+    width: 150px;
+}
+.PFP p {
+    margin: 2px;
+    font-weight: bold;
+}
+.PFP Button {
+    margin: 0;
+}

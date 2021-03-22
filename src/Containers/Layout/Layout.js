@@ -33,12 +33,12 @@ class Layout extends Component {
 				<SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler} />
 				<main className={classes.Content}>
 					<Route path="/" exact component={Home} />
-					<Route path="/user/signup" btnType="Sign up" exact component={Auth} />
-					<Route path="/user/profile" exact component={Profile} />
-					<Route path="/user/login" exact component={Auth} />
-					<Route path="/user/new-post" exact component={PostCreate} />
+					<Route path="/signup" btnType="Sign up" exact component={Auth} />
+					<Route path="/profile" exact component={Profile} />
+					<Route path="/login" exact component={Auth} />
+					<Route path="/new-post" exact component={PostCreate} />
 					<Route path="/edit-post/:id" component={PostCreate} />
-					<Route path="/user/feed" exact component={PostList} />
+					<Route path="/feed" exact component={PostList} />
 					<Route path="/" exact component={Footer} />
 				</main>
 			</AuxWrapper>

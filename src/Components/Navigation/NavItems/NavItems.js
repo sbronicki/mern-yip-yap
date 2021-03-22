@@ -9,13 +9,13 @@ const navItems = (props) => {
     return (
     props.LoggedIn ? 
         <ul className={classes.NavItems}>
-            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/user/new-post" NavItemTitle={'New Post'} />
-            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/user/profile" NavItemTitle={'Profile'} />
-            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/user/feed" NavItemTitle={'Feed'} />
+            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/new-post" NavItemTitle={'New Post'} />
+            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/profile" NavItemTitle={'Profile'} />
+            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/feed" NavItemTitle={'Feed'} />
         </ul> : 
         <ul className={classes.NavItems}>
-            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF='/user/signup' NavItemTitle='Sign up' />
-            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF='/user/login' NavItemTitle='Log in' />
+            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF='/signup' NavItemTitle='Sign up' />
+            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF='/login' NavItemTitle='Log in' />
         </ul>
 )}
 
