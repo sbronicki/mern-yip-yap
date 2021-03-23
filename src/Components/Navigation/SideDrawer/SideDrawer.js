@@ -7,6 +7,7 @@ import AuxWrapper from '../../../HOC/AuxWrapper';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 
 const sideDrawer = (props) => {
+	console.log(props)
 	let attachedClasses = [ classes.SideDrawer, classes.Close ];
 	if (props.open) attachedClasses = [ classes.SideDrawer, classes.Open ];
 	return (
@@ -19,7 +20,7 @@ const sideDrawer = (props) => {
 					</Link>
 				</div>
 				<nav>
-					<NavItems isAuthenticated={props.isAuth} />
+					<NavItems username={props.username} isAuthenticated={props.isAuth} />
 				</nav>
 			</div>
 		</AuxWrapper>

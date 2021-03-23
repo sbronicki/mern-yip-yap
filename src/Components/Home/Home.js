@@ -9,7 +9,7 @@ const home = (props) => {
 			<Logo />
 		</div>
 		<nav className={classes.NavItems}>
-			<NavItems isAuthenticated={props.isAuth} />
+			<NavItems username={props.username} isAuthenticated={props.isAuth} />
 		</nav>
 	</div>
 )};

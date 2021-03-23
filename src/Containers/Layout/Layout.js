@@ -49,7 +49,7 @@ class Layout extends Component {
 					<Route path="/feed" exact component={PostList} />
 					<Route path="/" exact component={Footer} />
 				</main>
-				<Redirect to='/' />
+				{/* <Redirect to='/' /> */}
 			</AuxWrapper>
 		)
 
@@ -62,14 +62,17 @@ class Layout extends Component {
 					<SideDrawer 
 						isAuth={this.props.isAuthenticated}
 						open={this.state.showSideDrawer} 
-						closed={this.sideDrawerClosedHandler} />
+						closed={this.sideDrawerClosedHandler}
+						username={this.props.username} />
 					<main className={classes.Content}>
 						<Route path="/" exact>
-							<Home isAuth={this.props.isAuthenticated} />
+							<Home 
+								username={this.props.username} 
+								isAuth={this.props.isAuthenticated} />
 						</Route>
 						<Route path="/signup" btnType="Sign up" exact component={Auth} />
 						<Route path="/login" exact component={Auth} />
-						<Route path="/profile" exact>
+						<Route path={"/profile" + (this.props.username ? '/' + this.props.username : null)} exact>
 							<Profile username={this.props.username ? this.props.username : null} />
 						</Route>
 						{/* <Route path="/profile" exact component={Profile} /> */}

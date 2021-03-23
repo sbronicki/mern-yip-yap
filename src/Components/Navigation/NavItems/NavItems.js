@@ -4,13 +4,13 @@ import NavItem from './NavItem/NavItem'
 
 const navItems = (props) => {
     const navItemToggleSideDrawer = () => (
-        console.log('close side drawer')
+        console.log(props)
     )
     return (
     props.isAuthenticated ? 
         <ul className={classes.NavItems}>
             <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/new-post" NavItemTitle={'New Post'} />
-            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/profile" NavItemTitle={'Profile'} />
+            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF={`/profile/${props.username ? props.username : null}`} NavItemTitle={'Profile'} />
             <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/feed" NavItemTitle={'Feed'} />
             <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/logout" NavItemTitle={'Logout'} />
         </ul> : 
