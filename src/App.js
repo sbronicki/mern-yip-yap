@@ -1,4 +1,8 @@
+import {Component} from 'react'
+import {connect} from 'react-redux'
+
 import Layout from './Containers/Layout/Layout'
+import * as actions from './store/actions/index'
 
 //NEED TO: 
 
@@ -21,13 +25,24 @@ import Layout from './Containers/Layout/Layout'
 // => edit / follow button displays follow and if clicked links to signup/in 
 // => if logged in and is your profile button displays edut profile
 // => logged in and not your profile button displays follow / unfollow
+class App extends Component {
+  componentDidMount(){
+    this.props.onTryAutoLogIn()
+  }
 
-function App() {
-  return (
+  render() {
+    return (
       <div className="App">
         <Layout />
       </div>
-  );
+    )
+  }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoLogIn: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
