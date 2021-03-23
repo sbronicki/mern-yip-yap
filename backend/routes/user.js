@@ -59,7 +59,7 @@ router.post('/login', (req, res, next) => {
                 expiresIn: 3600,
                 displayNAme: '',
                 email: fetchedUser.email,
-                localId: fetchedUser._id,
+                userId: fetchedUser._id,
                 token: token
             })
         })

@@ -50,9 +50,9 @@ export const auth = (email, password, isSignup) => {
             const token = response.data.token
             const expirationDate = new Date (new Date().getTime() + response.data.expiresIn * 1000)
             localStorage.setItem('token', token)
-            localStorage.setItem('userId', response.data.localId)
+            localStorage.setItem('userId', response.data.userId)
             localStorage.setItem('expirationDate', expirationDate)
-            dispatch(authSuccess(token, response.data.localId))
+            dispatch(authSuccess(token, response.data.userId))
             if(!isSignup){
                 dispatch(checkAuthTimeout(response.data.expiresIn))
             }

@@ -78,29 +78,8 @@ class Layout extends Component {
 				</AuxWrapper>
 			)
 		}
-
 		return (
 			<AuxWrapper className={classes.Layout}>
-				{/* <Toolbar 
-					isAuth={this.props.isAuthenticated}
-					drawerToggleClicked={this.sideDrawerToggleHandle} />
-				<SideDrawer 
-					isAuth={this.props.isAuthenticated}
-					open={this.state.showSideDrawer} 
-					closed={this.sideDrawerClosedHandler} />
-				<main className={classes.Content}>
-					<Route path="/" exact>
-						<Home isAuth={this.props.isAuthenticated} />
-					</Route>
-					<Route path="/signup" btnType="Sign up" exact component={Auth} />
-					<Route path="/profile" exact component={Profile} />
-					<Route path="/login" exact component={Auth} />
-					<Route path="/logout" exact component={Logout} />
-					<Route path="/new-post" exact component={PostCreate} />
-					<Route path="/edit-post/:id" component={PostCreate} />
-					<Route path="/feed" exact component={PostList} />
-					<Route path="/" exact component={Footer} />
-				</main> */}
 				{routes}
 			</AuxWrapper>
 		);

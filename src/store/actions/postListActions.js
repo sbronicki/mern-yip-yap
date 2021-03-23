@@ -9,6 +9,7 @@ export const getPostsStart = () => {
     }
 }
 export const getPostsSuccess = (posts) => {
+    console.log(posts)
     return {
         type: actionTypes.GET_POSTS_SUCCESS,
         posts: posts

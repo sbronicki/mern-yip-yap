@@ -7,7 +7,8 @@ import Post from '../PostCreate/Post/Post';
 
 class PostList extends Component {
 	state = {
-		posts: []
+		posts: [],
+		user: null
 	};
 	// postSelectedHandler = (id) => {
 	//     // this.setState({selectedPostId: id});
@@ -19,10 +20,14 @@ class PostList extends Component {
 	};
 	componentDidMount() {
 		this.props.onGetPosts()
+		let user = localStorage.getItem('userId')
+		this.setState({user: user})
 	}
 	render() {
+		if(this.state.user === this.props.posts[0].creator) console.log('users posts')
 		let posts
 		if (this.props.posts) {
+			console.log(this.props.posts)
 			posts = this.props.posts.map((post) => {
 				return (
 					<Post
@@ -30,6 +35,7 @@ class PostList extends Component {
 						id={post._id}
 						title={post.title}
 						content={post.content}
+						creator={post.creator}
 						editPost={this.editPostHandler}
 						deletePost={this.deletePostHandler}
 						image={
