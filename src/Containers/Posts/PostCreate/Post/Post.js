@@ -8,7 +8,7 @@ const post = (props) => (
         <h2>{props.title}</h2>
         <p>{props.content}</p>
         {props.image ? <img src={props.image} alt={props.title + 'image'}/> : null}
-        <div className={classes.ButtonContainer}>
+        <div style={props.usersPosts ? null : {display:'none'}} className={classes.ButtonContainer}>
             <Button btnType="Delete" clicked={props.deletePost}>Delete</Button>
             <Link to={'/edit-post/' + props.id}><Button btnType="Edit" clicked={props.editPost}>Edit</Button></Link>
         </div>

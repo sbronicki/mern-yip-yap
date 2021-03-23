@@ -24,13 +24,12 @@ class PostList extends Component {
 		this.setState({user: user})
 	}
 	render() {
-		if(this.state.user === this.props.posts[0].creator) console.log('users posts')
 		let posts
 		if (this.props.posts) {
-			console.log(this.props.posts)
 			posts = this.props.posts.map((post) => {
 				return (
 					<Post
+						usersPosts={this.state.user === this.props.posts[this.props.posts.indexOf(post)].creator}
 						key={post._id}
 						id={post._id}
 						title={post.title}
