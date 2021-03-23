@@ -37,6 +37,7 @@ export const getPosts = () => {
 export const getUserPosts = (user) => {
     return dispatch => {
         dispatch(getPostsStart())
+        if(!user) user = '605a4995d041c73fd4454567'
         axios
             .get('/api/posts')
             .then(response => {
