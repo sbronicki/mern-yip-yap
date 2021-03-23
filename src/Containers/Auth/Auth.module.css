@@ -22,3 +22,6 @@
 	font-family: monospace;
 	padding: 10px 5px;
 }
+.Auth .Username {
+	width: 100%;
+}

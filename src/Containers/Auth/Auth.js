@@ -15,13 +15,15 @@ class Auth extends Component {
 	};
 	submitHandler = (e) => {
         e.preventDefault();
-        this.props.onAuth(this.state.email, this.state.password, this.state.isSignup)
+        this.props.onAuth(this.state.email, this.state.password, this.state.username, this.state.isSignup)
 	};
 	onInputChangeHandler = (e) => {
 		if (e.target.id === 'emailInput') {
 			this.setState({ email: e.target.value });
 		} else if (e.target.id === 'passwordInput') {
 			this.setState({ password: e.target.value });
+		}else if (e.target.id === 'usernameInput') {
+			this.setState({ username: e.target.value });
 		}
 		if (this.state.disabled) {
 			if (this.state.email.includes('@') && this.state.password.length >= 8) {
@@ -47,10 +49,16 @@ class Auth extends Component {
                 {this.props.error ? <Error errorMessage={this.props.error} /> : null}
                 {!this.props.loading ? 
                 <form onSubmit={this.submitHandler}>
+					<div style={this.state.isSignup ? null : {display: 'none'}} className={classes.Username}>
+						<Input
+							id="usernameInput" 
+							placeholder="Username" 
+							onChange={this.onInputChangeHandler} />
+					</div>
 					<Input 
-						id="emailInput" 
-						type="email" 
-						placeholder="Email" 
+						id="emailInput"
+						type="email"
+						placeholder="Email"
 						onChange={this.onInputChangeHandler} />
 					<Input
 						id="passwordInput"
@@ -74,7 +82,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToprops = dispatch => {
 	return {
-		onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
+		onAuth: (email, password, username, isSignup) => dispatch(actions.auth(email, password, username, isSignup))
 	};
 };
 

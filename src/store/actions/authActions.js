@@ -7,11 +7,12 @@ export const authStart = () => {
 		type: actionTypes.AUTH_START
 	};
 };
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, userId, username) => {
 	return {
 		type: actionTypes.AUTH_SUCCESS,
         token: token,
-        userId: userId  
+        userId: userId,
+        username: username
 	};
 };
 export const authFail = (error) => {
@@ -34,12 +35,13 @@ export const checkAuthTimeout = (expirationDate) => {
         }, expirationDate * 1000)
     }
 }
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password, username, isSignup) => {
 	return dispatch => {
         dispatch(authStart());
         const authData = {
             email: email, 
-            password: password
+            password: password,
+            username: username
         }
         let url = '/api/user/signup'
         if(!isSignup) {
@@ -52,7 +54,8 @@ export const auth = (email, password, isSignup) => {
             localStorage.setItem('token', token)
             localStorage.setItem('userId', response.data.userId)
             localStorage.setItem('expirationDate', expirationDate)
-            dispatch(authSuccess(token, response.data.userId))
+            console.log(response.data)
+            dispatch(authSuccess(token, response.data.userId, response.data.username))
             if(!isSignup){
                 dispatch(checkAuthTimeout(response.data.expiresIn))
             }

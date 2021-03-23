@@ -13,6 +13,7 @@ router.post('/signup', (req, res, next) => {
     .then(hash => {
         const user = new User({
             email: req.body.email,
+            username: req.body.username,
             password: hash
         })
         user.save()
@@ -49,7 +50,7 @@ router.post('/login', (req, res, next) => {
             }
             const token = jwt.sign({
                 email: fetchedUser.email, 
-                userId: fetchedUser._id
+                userId: fetchedUser._id,
             }, 
                 process.env.ACCESS_TOKEN_SECRET, 
             {
@@ -57,7 +58,7 @@ router.post('/login', (req, res, next) => {
             })
             res.status(200).json({
                 expiresIn: 3600,
-                displayNAme: '',
+                username: fetchedUser.username,
                 email: fetchedUser.email,
                 userId: fetchedUser._id,
                 token: token

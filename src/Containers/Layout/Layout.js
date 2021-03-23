@@ -29,6 +29,7 @@ class Layout extends Component {
 		});
 	};
 	render() {
+		console.log(this.props)
 		let routes = (
 			<AuxWrapper>
 				<Toolbar 
@@ -67,8 +68,11 @@ class Layout extends Component {
 							<Home isAuth={this.props.isAuthenticated} />
 						</Route>
 						<Route path="/signup" btnType="Sign up" exact component={Auth} />
-						<Route path="/profile" exact component={Profile} />
 						<Route path="/login" exact component={Auth} />
+						<Route path="/profile" exact>
+							<Profile username={this.props.username ? this.props.username : null} />
+						</Route>
+						{/* <Route path="/profile" exact component={Profile} /> */}
 						<Route path="/logout" exact component={Logout} />
 						<Route path="/new-post" exact component={PostCreate} />
 						<Route path="/edit-post/:id" component={PostCreate} />
@@ -88,7 +92,8 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
 	return {
-		isAuthenticated: state.auth.token !== null
+		isAuthenticated: state.auth.token !== null,
+		username: state.auth.username
 	}
 }
 export default connect(mapStateToProps)(Layout);
