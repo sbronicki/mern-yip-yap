@@ -65,24 +65,27 @@ class PostCreate extends Component {
 
 		this.props.onSavePost(postData)
 
-		const inputElement = document.getElementById('inputElement');
-		const textAreaElement = document.getElementById('textAreaElement');
+		// need to await response or else this runs even with an error
+		if(!this.props.error){
+			const inputElement = document.getElementById('inputElement');
+			const textAreaElement = document.getElementById('textAreaElement');
 
-		inputElement.value = '';
-		textAreaElement.value = '';
+			inputElement.value = '';
+			textAreaElement.value = '';
 
-		this.setState({
-			title: '',
-			content: '',
-			id: '',
-			image: null,
-			imagePreview: null,
-			disabled: true,
-			displaySavedPostMessage: true
-		});
-		setTimeout(() => {
-			this.setState({ displaySavedPostMessage: false });
-		}, 2000);
+			this.setState({
+				title: '',
+				content: '',
+				id: '',
+				image: null,
+				imagePreview: null,
+				disabled: true,
+				displaySavedPostMessage: true
+			});
+			setTimeout(() => {
+				this.setState({ displaySavedPostMessage: false });
+			}, 2000);
+		}
 	};
 	updatePostHandler = () => {
 		const post = {

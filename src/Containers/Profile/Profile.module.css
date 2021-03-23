@@ -1,0 +1,25 @@
+.Profile {
+	box-sizing: border-box;
+	margin-top: 10px;
+	padding: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.Profile .PFP {
+	width: 150px;
+	border-radius: 5%;
+}
+.Profile p {
+	margin: 5px;
+}
+.Profile .PostListContainer{
+	width: 100%;
+}
+.Profile .PostListContainer ul{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	width: 100%;
+}

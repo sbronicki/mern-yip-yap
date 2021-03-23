@@ -7,11 +7,12 @@ const navItems = (props) => {
         console.log('close side drawer')
     )
     return (
-    props.LoggedIn ? 
+    props.isAuthenticated ? 
         <ul className={classes.NavItems}>
             <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/new-post" NavItemTitle={'New Post'} />
             <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/profile" NavItemTitle={'Profile'} />
             <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/feed" NavItemTitle={'Feed'} />
+            <NavItem clicked={navItemToggleSideDrawer} NavItemHREF="/logout" NavItemTitle={'Logout'} />
         </ul> : 
         <ul className={classes.NavItems}>
             <NavItem clicked={navItemToggleSideDrawer} NavItemHREF='/signup' NavItemTitle='Sign up' />

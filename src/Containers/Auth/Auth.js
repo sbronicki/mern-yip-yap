@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router-dom'
+ 
 import classes from './Auth.module.css';
 import Spinner from '../../Components/UI/Spinner/Spinner'
 import Error from '../../Components/UI/Error/Error'
@@ -36,8 +37,13 @@ class Auth extends Component {
 		}
 	}
 	render() {
+		let authRedirect = null 
+		if(this.props.isAuthenticated) {
+			authRedirect = <Redirect to='/' />
+		}
 		return (
 			<div className={classes.Auth}>
+				{authRedirect}
                 {this.props.error ? <Error errorMessage={this.props.error} /> : null}
                 {!this.props.loading ? 
                 <form onSubmit={this.submitHandler}>
@@ -62,7 +68,8 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         token: state.auth.token,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+		isAuthenticated: state.auth.token !== null
     }
 }
 const mapDispatchToprops = dispatch => {

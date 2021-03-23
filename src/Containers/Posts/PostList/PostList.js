@@ -43,7 +43,11 @@ class PostList extends Component {
 			});
 		}
 		return (
-			<ul className={classes.PostList}>{this.props.posts ? this.props.posts.length > 0 ? posts : <p>No yips yapped...yet!</p> : <p>No yips yapped...yet!</p>}</ul>
+			<ul className={classes.PostList}>
+				{this.props.posts ? 
+					this.props.posts.length > 0 ? posts : <p>No yips yapped...yet!</p> 
+				: <p>No yips yapped...yet!</p>}
+			</ul>
 		);
 	}
 }

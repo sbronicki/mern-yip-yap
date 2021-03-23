@@ -15,7 +15,7 @@
 }
 .Toolbar img {
     margin-top: 5px;
-    height: 70px;
+    height: 10vh;
 }
 
 @media (min-width: 500px) {

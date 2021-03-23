@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import classes from './Layout.module.css';
 import Home from '../../Components/Home/Home';
@@ -9,8 +10,9 @@ import SideDrawer from '../../Components/Navigation/SideDrawer/SideDrawer';
 import PostCreate from '../Posts/PostCreate/PostCreate';
 import PostList from '../Posts/PostList/PostList';
 import Auth from '../Auth/Auth';
-import Profile from '../../Components/Profile/Profile';
+import Profile from '../Profile/Profile';
 import Footer from '../../Components/Footer/Footer';
+import Logout from '../Auth/Logout/Logout';
 
 class Layout extends Component {
 	state = {
@@ -27,15 +29,25 @@ class Layout extends Component {
 		});
 	};
 	render() {
+		console.log(this.props)
 		return (
 			<AuxWrapper className={classes.Layout}>
-				<Toolbar drawerToggleClicked={this.sideDrawerToggleHandle} />
-				<SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler} />
+				<Toolbar 
+					isAuth={this.props.isAuthenticated}
+					drawerToggleClicked={this.sideDrawerToggleHandle} />
+				<SideDrawer 
+					isAuth={this.props.isAuthenticated}
+					open={this.state.showSideDrawer} 
+					closed={this.sideDrawerClosedHandler} />
 				<main className={classes.Content}>
-					<Route path="/" exact component={Home} />
+					<Route path="/" exact>
+						<Home isAuth={this.props.isAuthenticated} />
+					</Route>
+					{/* <Route path="/" exact component={Home} /> */}
 					<Route path="/signup" btnType="Sign up" exact component={Auth} />
 					<Route path="/profile" exact component={Profile} />
 					<Route path="/login" exact component={Auth} />
+					<Route path="/logout" exact component={Logout} />
 					<Route path="/new-post" exact component={PostCreate} />
 					<Route path="/edit-post/:id" component={PostCreate} />
 					<Route path="/feed" exact component={PostList} />
@@ -45,4 +57,10 @@ class Layout extends Component {
 		);
 	}
 }
-export default Layout;
+
+const mapStateToProps = state => {
+	return {
+		isAuthenticated: state.auth.token !== null
+	}
+}
+export default connect(mapStateToProps)(Layout);

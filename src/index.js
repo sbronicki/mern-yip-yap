@@ -25,7 +25,7 @@ axios.defaults.baseURL = 'http://localhost:4200'
 
 axios.interceptors.request.use(function (config) {
 	const token = store.getState().auth.token;
-	config.headers.Authorization = token
+	config.headers.authorization = token
 	return config;
   }, null, { synchronous: true });
 
