@@ -9,12 +9,12 @@ import classes from './Toolbar.module.css'
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle'
 
 const toolbar = (props) => (
-    <header className={classes.Toolbar}>
+    <header username={props.username} className={classes.Toolbar}>
         <DrawerToggle clicked={props.drawerToggleClicked}/>
             <Link to='/'>
              <img src={ToolbarIcon} alt=""/>
             </Link>
-            <Link to='/profile'>
+            <Link to={`/profile/${props.username ? props.username : 'YipYap'}`}>
                  <IoPersonCircleOutline size='3em' color="#fff" />
             </Link>
     </header>

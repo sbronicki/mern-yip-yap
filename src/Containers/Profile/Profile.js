@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Redirect from 'react-router-dom'
 
 import classes from './Profile.module.css';
 import ProfilePostList from '../Posts/PostList/ProfilePostList'
@@ -12,6 +13,7 @@ import ProfilePostList from '../Posts/PostList/ProfilePostList'
 
 class Profile extends Component {
 	render() {
+		console.log(this.props)
 		return  (
 			<div className={classes.Profile}>
 				{/* <img className={classes.Header} style={this.props.displayHeader ? null : {display: 'none'}} src={this.props.headerImg ? this.props.headerImg : BrandHeader} alt="Logo Header!"/>

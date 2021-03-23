@@ -44,7 +44,7 @@ class Layout extends Component {
 						<Home isAuth={this.props.isAuthenticated} />
 					</Route>
 					<Route path="/signup" btnType="Sign up" exact component={Auth} />
-					<Route path="/profile" exact component={Profile} />
+					<Route path="/profile/YipYap" exact component={Profile} />
 					<Route path="/login" exact component={Auth} />
 					<Route path="/feed" exact component={PostList} />
 					<Route path="/" exact component={Footer} />
@@ -58,7 +58,8 @@ class Layout extends Component {
 				<AuxWrapper>
 					<Toolbar 
 						isAuth={this.props.isAuthenticated}
-						drawerToggleClicked={this.sideDrawerToggleHandle} />
+						drawerToggleClicked={this.sideDrawerToggleHandle}
+						username={this.props.username} />
 					<SideDrawer 
 						isAuth={this.props.isAuthenticated}
 						open={this.state.showSideDrawer} 
