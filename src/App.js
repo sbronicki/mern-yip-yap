@@ -10,10 +10,11 @@ import * as actions from './store/actions/index'
 // ~~~!!!~~ASAP~~!!!~~~ =>
 // ~~~!!!~~ASAP~~!!!~~~ =>
 // proper error handling 
+// proper button disables
+// style for all screen sizes
 // add delete image option in post create / edit preview
 // navigate to feed after updating a post
 // hide sidedrawer when navitem selected
-// style for all screen sizes
 // redirect to login after successfully signing up
 // clicking a post brings you to that users profile
 // latest posts at the top

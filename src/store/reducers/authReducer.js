@@ -28,7 +28,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_FAIL:
             return {
                 ...state,
-                error: action.error,
+                error: true,
+                errorStatus: action.errorStatus,
+                errorMessage: action.errorMessage,
                 loading: false
             }
         case actionTypes.AUTH_LOGOUT:

@@ -59,6 +59,13 @@ class PostCreate extends Component {
 		}
 	};
 	savePostHandler = () => {
+		if(this.state.title.length === 0) {
+			this.setState({disabled: true})
+			return
+		} else if (this.state.content.length === 0) {
+			this.setState({disabled: true})
+			return
+		}
 		const postData = {
 			title: this.state.title,
 			content: this.state.content,

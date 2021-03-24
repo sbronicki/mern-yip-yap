@@ -36,18 +36,19 @@ router.post('/login', (req, res, next) => {
         .then(user => {
             if(!user) {
                 return res.status(401).json({
-                    message: 'Auth failed'
+                    message: 'Email not in database'
                 })
             }
             fetchedUser = user
             return bcrypt.compare(req.body.password, user.password)
         })
         .then(result => {
+            if(result.statusCode === 401 || result.statusMessage === 'Unauthorized') return
             if(!result) {
                return res.status(401).json({
-                message: 'Auth failed'
+                message: 'Email/password is invalid'
                })
-            }
+            } 
             const token = jwt.sign({
                 email: fetchedUser.email, 
                 userId: fetchedUser._id,
@@ -57,14 +58,15 @@ router.post('/login', (req, res, next) => {
                 expiresIn: '1h'
             })
             res.status(200).json({
-                expiresIn: 3600,
+                 expiresIn: 3600,
                 username: fetchedUser.username,
                 email: fetchedUser.email,
                 userId: fetchedUser._id,
                 token: token
-            })
+            })  
         })
         .catch(err => {
+            console.log(err)
             return res.status(401).json({
                 error: err
             })

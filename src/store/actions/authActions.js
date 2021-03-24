@@ -15,10 +15,11 @@ export const authSuccess = (token, userId, username) => {
         username: username
 	};
 };
-export const authFail = (error) => {
+export const authFail = (errorStatus, errorMessage) => {
 	return {
 		type: actionTypes.AUTH_FAIL,
-		error: error
+		errorStatus: errorStatus,
+        errorMessage: errorMessage
 	};
 };
 export const logout = () => {
@@ -62,8 +63,12 @@ export const auth = (email, password, username, isSignup) => {
                 }
             })
             .catch(err => {
-                console.log(err.response.request.status)
-                dispatch(authFail())
+                // console.log(err.response)
+                const error = {
+                    status: err.response.request.status,
+                    message: err.response.data.message
+                }
+                dispatch(authFail(error.status, error.message))
             })
             return
         }
@@ -73,9 +78,11 @@ export const auth = (email, password, username, isSignup) => {
             dispatch(authSuccess(null, null, null))
         })
         .catch(err => {
-            console(err)
-            // console(err.response.request.status)
-            // dispatch(authFail())
+            const error = {
+                status: err.response.request.status,
+                message: err.response.data.error.message
+            }
+            dispatch(authFail(error.status, error.message))
         })
 	};
 };

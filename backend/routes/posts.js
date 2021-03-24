@@ -13,6 +13,7 @@ router.post('', checkAuth, (req, res, next) => {
         image: req.body.image,
         creator: req.userData.userId
     })
+    if(post.title.length === 0 || post.content.length === 0) return
     post.save()
     .then(savedPost => {
         res.status(201).json({

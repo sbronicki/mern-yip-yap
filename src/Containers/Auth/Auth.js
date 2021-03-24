@@ -46,7 +46,7 @@ class Auth extends Component {
 		return (
 			<div className={classes.Auth}>
 				{authRedirect}
-                {this.props.error ? <Error errorMessage={this.props.error} /> : null}
+                {this.props.error ? <Error errorStatus={this.props.errorStatus} errorMessage={this.props.errorMessage} /> : null}
                 {!this.props.loading ? 
                 <form onSubmit={this.submitHandler}>
 					<div style={this.state.isSignup ? null : {display: 'none'}} className={classes.Username}>
@@ -74,7 +74,9 @@ class Auth extends Component {
 const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
-        error: state.auth.error,
+		error: state.auth.error,
+        errorStatus: state.auth.errorStatus,
+        errorMessage: state.auth.errorMessage,
         token: state.auth.token,
         userId: state.auth.userId,
 		isAuthenticated: state.auth.token !== null
