@@ -4,7 +4,7 @@ import NavItem from './NavItem/NavItem'
 
 const navItems = (props) => {
     const navItemToggleSideDrawer = () => (
-        console.log(props)
+        console.log('toggle')
     )
     return (
     props.isAuthenticated ? 

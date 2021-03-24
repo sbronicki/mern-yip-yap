@@ -66,7 +66,8 @@ router.use('/:id', (req, res, next) => {
 })
 //get saved posts
 router.use('', (req, res, next) => {
-    Post.find().limit(5)
+    // Post.find().limit(5) when pagination is added
+    Post.find()
     .then(posts => {
         res.status(200).json({
             message: 'Posts fetch success',

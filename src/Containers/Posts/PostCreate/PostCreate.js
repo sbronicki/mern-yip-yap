@@ -6,6 +6,9 @@ import Button from '../../../Components/UI/Button/Button';
 import Input from '../../../Components/UI/Input/Input';
 import PostSavedMessage from '../../../Components/PostSavedMessage/PostSavedMessage';
 import ImageTooBigMessage from '../../../Components/ImageTooBigMessage/ImageTooBigMessage';
+import Error from '../../../Components/UI/Error/Error'
+import Spinner from '../../../Components/UI/Spinner/Spinner'
+import AuxWrapper from '../../../HOC/AuxWrapper'
 import * as postCreateActions from '../../../store/actions/postCreateActions'
 
 
@@ -119,7 +122,6 @@ class PostCreate extends Component {
 		// this is not the correct way to accomplish this lol
 		setTimeout(() => {
 			if(this.props.id){
-				console.log(this.props)
 				const inputElement = document.getElementById('inputElement');
 				const textAreaElement = document.getElementById('textAreaElement');
 
@@ -173,18 +175,14 @@ class PostCreate extends Component {
 					/>
 					<ImageTooBigMessage displayimageTooBigMessage={this.state.displayImageTooBigMessage} />
 					<PostSavedMessage saveType={this.props.postSaved ? 'saved' : 'updated'} displaySavedPostMessage={this.state.displaySavedPostMessage} />
+					<Spinner showSpinner={this.props.loading} />
 					<div className={classes.ButtonContainer}>
 						<Button
 							disabled={this.state.disabled}
 							clicked={this.state.editMode ? this.updatePostHandler : this.savePostHandler}
-							btnType="SavePost"
-						>
-							Save Post
-						</Button>
+							btnType="SavePost">Save Post</Button>
 						<Input accept="image/*" onChange={this.onImageSelectedHandler} type="file" id="fileSelect" />
-						<Button clicked={this.fileSelectClick} btnType="ImageUpload">
-							Upload Image
-						</Button>
+						<Button clicked={this.fileSelectClick} btnType="ImageUpload">Upload Image</Button>
 					</div>
 				</div>
 				{this.state.image ? (
@@ -207,7 +205,9 @@ const mapStateToProps = state => {
 		id: state.postCreate.id,
 		editMode: state.postCreate.editMode,
 		postSaved: state.postCreate.postSaved,
-		postUpdated: state.postCreate.postUpdated
+		postUpdated: state.postCreate.postUpdated,
+		error: state.postCreate.error,
+		loading: state.postCreate.loading
     }
 }
 const mapDispatchToProps = dispatch => {

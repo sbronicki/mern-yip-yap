@@ -11,7 +11,7 @@ import authReducer from './store/reducers/authReducer';
 import postListReducer from './store/reducers/postListReducer';
 import postCreateReducer from './store/reducers/postCreateReducer'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : null;
 
 const rootReducer = combineReducers({
 	auth: authReducer,

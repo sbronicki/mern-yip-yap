@@ -29,7 +29,6 @@ class Layout extends Component {
 		});
 	};
 	render() {
-		console.log(this.props)
 		let routes = (
 			<AuxWrapper>
 				<Toolbar 
@@ -49,10 +48,9 @@ class Layout extends Component {
 					<Route path="/feed" exact component={PostList} />
 					<Route path="/" exact component={Footer} />
 				</main>
-				{/* <Redirect to='/' /> */}
+				<Redirect to='/' />
 			</AuxWrapper>
 		)
-
 		if(this.props.isAuthenticated){
 			routes = (
 				<AuxWrapper>
@@ -76,7 +74,6 @@ class Layout extends Component {
 						<Route path={"/profile" + (this.props.username ? '/' + this.props.username : null)} exact>
 							<Profile username={this.props.username ? this.props.username : null} />
 						</Route>
-						{/* <Route path="/profile" exact component={Profile} /> */}
 						<Route path="/logout" exact component={Logout} />
 						<Route path="/new-post" exact component={PostCreate} />
 						<Route path="/edit-post/:id" component={PostCreate} />
@@ -96,6 +93,7 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
 	return {
+		// isAuthenticated: state.auth.token ? true : false,
 		isAuthenticated: state.auth.token !== null,
 		username: state.auth.username
 	}

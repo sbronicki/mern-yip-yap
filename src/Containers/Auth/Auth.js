@@ -66,7 +66,7 @@ class Auth extends Component {
 						placeholder="Password"
 						onChange={this.onInputChangeHandler}/>
 					<Button btnType="Login">{this.state.isSignup ? 'Sign up' : 'Log in'}</Button>
-           		</form> : <Spinner />}
+           		</form> : <Spinner showSpinner={this.props.loading} />}
 			</div>
 		);
 	}

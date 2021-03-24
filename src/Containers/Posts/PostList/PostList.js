@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import classes from './PostList.module.css';
 import Post from '../PostCreate/Post/Post';
+import Error from '../../../Components/UI/Error/Error'
+import Spinner from '../../../Components/UI/Spinner/Spinner'
+import AuxWrapper from '../../../HOC/AuxWrapper'
 
 class PostList extends Component {
 	state = {
@@ -24,6 +27,7 @@ class PostList extends Component {
 		this.setState({user: user})
 	}
 	render() {
+		
 		let posts
 		if (this.props.posts) {
 			posts = this.props.posts.map((post) => {
@@ -49,10 +53,12 @@ class PostList extends Component {
 		}
 		return (
 			<ul className={classes.PostList}>
-				{this.props.posts ? 
-					this.props.posts.length > 0 ? posts : <p>No yips yapped...yet!</p> 
-				: <p>No yips yapped...yet!</p>}
-			</ul>
+				{this.props.loading ? 
+				<Spinner showSpinner={this.props.loading} /> 
+				:  this.props.posts ? 
+					this.props.posts.length > 0 ? posts : <li>No yips yapped...yet!</li> 
+				: <li>No yips yapped...yet!</li>}
+			</ul>  
 		);
 	}
 }

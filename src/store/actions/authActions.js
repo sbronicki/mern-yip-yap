@@ -48,23 +48,33 @@ export const auth = (email, password, username, isSignup) => {
         let url = '/api/user/signup'
         if(!isSignup) {
             url = '/api/user/login'
+            axios.post(url, authData)
+            .then(response => {
+                const token = response.data.token
+                const expirationDate = new Date (new Date().getTime() + response.data.expiresIn * 1000)
+                localStorage.setItem('token', token)
+                localStorage.setItem('userId', response.data.userId)
+                localStorage.setItem('expirationDate', expirationDate)
+                localStorage.setItem('username', response.data.username)
+                dispatch(authSuccess(token, response.data.userId, response.data.username))
+                if(!isSignup){
+                    dispatch(checkAuthTimeout(response.data.expiresIn))
+                }
+            })
+            .catch(err => {
+                console(err.response.request.status)
+                dispatch(authFail())
+            })
+            return
         }
         axios.post(url, authData)
         .then(response => {
-            const token = response.data.token
-            const expirationDate = new Date (new Date().getTime() + response.data.expiresIn * 1000)
-            localStorage.setItem('token', token)
-            localStorage.setItem('userId', response.data.userId)
-            localStorage.setItem('expirationDate', expirationDate)
-            localStorage.setItem('username', response.data.username)
-            dispatch(authSuccess(token, response.data.userId, response.data.username))
-            if(!isSignup){
-                dispatch(checkAuthTimeout(response.data.expiresIn))
-            }
+            console.log(response.data)
+            dispatch(authSuccess(null, null, null))
         })
         .catch(err => {
-            console.log(err)
-            // dispatch(authFail(err))
+            console(err.response.request.status)
+            dispatch(authFail())
         })
 	};
 };

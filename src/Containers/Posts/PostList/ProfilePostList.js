@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import classes from './PostList.module.css';
 import Post from '../PostCreate/Post/Post';
+import AuxWrapper from '../../../HOC/AuxWrapper'
+import Error from '../../../Components/UI/Error/Error'
+import Spinner from '../../../Components/UI/Spinner/Spinner'
 
 class PostList extends Component {
 	state = {
@@ -49,9 +52,11 @@ class PostList extends Component {
 		}
 		return (
 			<ul className={classes.PostList}>
-				{this.props.posts ? 
-					this.props.posts.length > 0 ? posts : <p>No yips yapped...yet!</p> 
-				: <p>No yips yapped...yet!</p>}
+				{this.props.loading ? 
+				<Spinner showSpinner={this.props.loading} /> 
+				:  this.props.posts ? 
+					this.props.posts.length > 0 ? posts : <li>No yips yapped...yet!</li> 
+				: <li>No yips yapped...yet!</li>}
 			</ul>
 		);
 	}

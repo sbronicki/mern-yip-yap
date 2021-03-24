@@ -1,9 +1,7 @@
 import classes from './Spinner.module.css'
 
-const spinner = () => (
-    <div className={classes.Spinner}>
-        <h3>Loading</h3>
-    </div>
+const spinner = (props) => (
+    <div style={props.showSpinner ? null: {display: 'none'}} className={classes.Spinner}>Loading</div>
 )
 
 export default spinner
