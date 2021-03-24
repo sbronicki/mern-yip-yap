@@ -95,11 +95,9 @@ export const updatePostFail = () => {
 export const updatePost = (post) => {
     return dispatch => {
         dispatch(updatePostStart())
-        console.log(post)
         axios
 			.put('/api/posts/' + post.id, post)
 			.then((response) => {
-                console.log(response)
 				dispatch(updatePostSuccess(response))
 			})
 			.catch((error) => dispatch(updatePostFail(error)));

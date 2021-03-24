@@ -1,4 +1,4 @@
-import { Router, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import classes from './Post.module.css'
 import Button from '../../../../Components/UI/Button/Button'

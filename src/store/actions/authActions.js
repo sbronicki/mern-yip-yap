@@ -62,7 +62,7 @@ export const auth = (email, password, username, isSignup) => {
                 }
             })
             .catch(err => {
-                console(err.response.request.status)
+                console.log(err.response.request.status)
                 dispatch(authFail())
             })
             return
@@ -73,8 +73,9 @@ export const auth = (email, password, username, isSignup) => {
             dispatch(authSuccess(null, null, null))
         })
         .catch(err => {
-            console(err.response.request.status)
-            dispatch(authFail())
+            console(err)
+            // console(err.response.request.status)
+            // dispatch(authFail())
         })
 	};
 };

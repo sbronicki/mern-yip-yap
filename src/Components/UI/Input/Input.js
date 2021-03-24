@@ -5,13 +5,13 @@ const input = (props) => {
 
     switch(props.inputtype){
         case('input'):
-            inputElement = <input ref={props.reference} className={classes.InputElement} {...props} />
+            inputElement = <input maxLength="50" ref={props.reference} className={classes.InputElement} {...props} />
             break
         case('textarea'): 
-            inputElement = <textarea className={classes.InputElement} {...props} />
+            inputElement = <textarea maxLength="256" className={classes.InputElement} {...props} />
             break
         default:
-            inputElement = <input className={classes.InputElement} {...props} />
+            inputElement = <input maxLength="50" className={classes.InputElement} {...props} />
             break
     }
     return (

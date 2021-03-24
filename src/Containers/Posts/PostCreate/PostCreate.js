@@ -6,9 +6,8 @@ import Button from '../../../Components/UI/Button/Button';
 import Input from '../../../Components/UI/Input/Input';
 import PostSavedMessage from '../../../Components/PostSavedMessage/PostSavedMessage';
 import ImageTooBigMessage from '../../../Components/ImageTooBigMessage/ImageTooBigMessage';
-import Error from '../../../Components/UI/Error/Error'
+// import Error from '../../../Components/UI/Error/Error'
 import Spinner from '../../../Components/UI/Spinner/Spinner'
-import AuxWrapper from '../../../HOC/AuxWrapper'
 import * as postCreateActions from '../../../store/actions/postCreateActions'
 
 

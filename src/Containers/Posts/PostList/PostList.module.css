@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     list-style: none;
+    overflow: hidden;
 }
 .PostList .Li {
     padding: 10px;

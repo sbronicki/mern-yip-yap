@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import classes from './PostList.module.css';
 import Post from '../PostCreate/Post/Post';
-import AuxWrapper from '../../../HOC/AuxWrapper'
-import Error from '../../../Components/UI/Error/Error'
+// import Error from '../../../Components/UI/Error/Error'
 import Spinner from '../../../Components/UI/Spinner/Spinner'
 
 class PostList extends Component {

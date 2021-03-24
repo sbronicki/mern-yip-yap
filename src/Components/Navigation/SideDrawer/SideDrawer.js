@@ -1,4 +1,4 @@
-import { Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import classes from './SideDrawer.module.css';
 import Logo from '../../Logo/Logo';

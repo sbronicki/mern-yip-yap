@@ -9,15 +9,15 @@ import * as actions from './store/actions/index'
 // ~~~!!!~~ASAP~~!!!~~~ =>
 // ~~~!!!~~ASAP~~!!!~~~ =>
 // ~~~!!!~~ASAP~~!!!~~~ =>
-// add validation for inputs
 // proper error handling 
-// character limits for title and content
 // add delete image option in post create / edit preview
 // navigate to feed after updating a post
 // hide sidedrawer when navitem selected
 // style for all screen sizes
 // redirect to login after successfully signing up
 // clicking a post brings you to that users profile
+// latest posts at the top
+// link to new post if on your own profile
 
 // EVENTUALLY =>
 // select a single post 
