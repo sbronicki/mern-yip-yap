@@ -8,7 +8,7 @@ const input = (props) => {
             inputElement = <input maxLength="50" ref={props.reference} className={classes.InputElement} {...props} />
             break
         case('textarea'): 
-            inputElement = <textarea maxLength="256" className={classes.InputElement} {...props} />
+            inputElement = <textarea maxLength="300" className={classes.InputElement} {...props} />
             break
         default:
             inputElement = <input maxLength="50" className={classes.InputElement} {...props} />

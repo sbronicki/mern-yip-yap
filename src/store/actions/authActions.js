@@ -77,7 +77,6 @@ export const auth = (email, password, username, isSignup) => {
         }
         axios.post(url, authData)
         .then(response => {
-            console.log(response.data)
             dispatch(authSuccess(null, null, null))
         })
         .catch(err => {
