@@ -14,10 +14,11 @@ export const getPostsSuccess = posts => {
         posts: posts
     }
 }
-export const getPostsFail = error => {
+export const getPostsFail = (errorStatus, errorMessage) => {
     return {
         type: actionTypes.GET_POSTS_FAIL,
-        error: error
+        errorStatus: errorStatus,
+        errorMessage: errorMessage
     }
 }
 export const getPosts = () => {
@@ -28,9 +29,16 @@ export const getPosts = () => {
 			.then(response => {
                 dispatch(getPostsSuccess(response.data.posts))
 			})
-			.catch(error => {
-				dispatch(getPostsFail(error))
-			});
+			.catch(err => {
+                if(err.response) {
+                     const error = {
+                         status: err.response.request.status,
+                         message: err.response.data.error.message
+                     }
+                 dispatch(getPostsFail(error.status, error.message))
+                }
+                dispatch(getPostsFail(503, 'server error :('))
+             })
     }
 }
 // load specific user posts
@@ -44,9 +52,16 @@ export const getUserPosts = (user) => {
                const userPosts = response.data.posts.filter(post => post.creator === user)
                dispatch(getPostsSuccess(userPosts))
             })
-            .catch(error => {
-                dispatch(getPostsFail(error))
-            })
+            .catch(err => {
+                if(err.response) {
+                     const error = {
+                         status: err.response.request.status,
+                         message: err.response.data.error.message
+                     }
+                 dispatch(getPostsFail(error.status, error.message))
+                }
+                dispatch(getPostsFail(503, 'server error :('))
+             })
     }
 }
 // delete posts 
@@ -61,10 +76,11 @@ export const deletePostSuccess = response => {
         postId: response.config.url.substr(11)
     }
 }
-export const deletePostFail = error => {
+export const deletePostFail = (errorStatus, errorMessage) => {
     return {
         type: actionTypes.DELETE_POST_FAIL,
-        error: error
+        errorStatus: errorStatus,
+        errorMessage: errorMessage
     }
 }
 export const deletePost = postId => {
@@ -75,9 +91,16 @@ export const deletePost = postId => {
 			.then(response => {
                 dispatch(deletePostSuccess(response))
 			})
-			.catch(error => {
-                dispatch(deletePostFail(error))
-            });
+			.catch(err => {
+                if(err.response) {
+                     const error = {
+                         status: err.response.request.status,
+                         message: err.response.data.error.message
+                     }
+                 dispatch(deletePostFail(error.status, error.message))
+                }
+                dispatch(deletePostFail(503, 'server error :('))
+             })
 
     }
 }

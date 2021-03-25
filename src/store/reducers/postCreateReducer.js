@@ -31,6 +31,8 @@ const postCreateReducer = (state = initialState, action) => {
             return{
                 ...state,
                 error: true,
+                errorStatus: action.errorStatus,
+                errorMessage: action.errorMessage,
                 loading: false
             }
         case actionTypes.GET_POST_TO_UPDATE_START: 
@@ -54,6 +56,8 @@ const postCreateReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: true,
+                errorStatus: action.errorStatus,
+                errorMessage: action.errorMessage,
                 loading: false
             }
         case actionTypes.UPDATE_POST_START: 
@@ -73,6 +77,8 @@ const postCreateReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: true,
+                errorStatus: action.errorStatus,
+                errorMessage: action.errorMessage,
                 loading: false
             }
             default:

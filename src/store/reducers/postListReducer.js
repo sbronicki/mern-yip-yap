@@ -22,7 +22,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_POSTS_FAIL:
             return {
                 ...state,
-                error: action.error,
+                error: true,
+                errorStatus: action.errorStatus,
+                errorMessage: action.errorMessage,
                 loading: false
             } 
         case actionTypes.DELETE_POST_START:
@@ -41,6 +43,8 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 error: true,
+                errorStatus: action.errorStatus,
+                errorMessage: action.errorMessage,
                 loading: false
             }
         default: 

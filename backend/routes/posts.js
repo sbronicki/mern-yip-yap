@@ -21,17 +21,27 @@ router.post('', checkAuth, (req, res, next) => {
             postId: savedPost._id
         })
     })
+    .catch(err => {
+        console.log(err)
+        return res.status(500).json({
+            error: err
+        })
+    })
 })
 //delete saved posts
 router.delete('/:id', checkAuth, (req, res, next) => {
     Post.deleteOne({_id:  req.params.id, creator: req.userData.userId})
     .then(result => {
-        console.log(result)
         if(result.n > 0) {
             res.status(200).json({message: 'Post deleted'})
         } else {
             res.status(401).json({message: 'Not authorized!'})
         }
+    })
+    .catch(err => {
+        return res.status(500).json({
+            error: err
+        })
     })
 })
 // put edited post
@@ -50,8 +60,10 @@ router.put('/:id', checkAuth, (req, res, next) => {
             res.status(401).json({message: 'Not authorized!'})
         }
     })
-    .catch(error => {
-        console.log(error, 'in appp.put')
+    .catch(err => {
+        return res.status(500).json({
+            error: err
+        })
     })
 })
 //get post to edit
@@ -63,7 +75,11 @@ router.use('/:id', (req, res, next) => {
             posts: posts
         })
     })
-    .catch(e => console.log(e))
+    .catch(err => {
+        return res.status(500).json({
+            error: err
+        })
+    })
 })
 //get saved posts
 router.use('', (req, res, next) => {
@@ -75,7 +91,11 @@ router.use('', (req, res, next) => {
             posts: posts
         })
     })
-    .catch(e => console.log('routes: ', e))
+    .catch(err => {
+        return res.status(500).json({
+            error: err
+        })
+    })
 })
 
 module.exports = router

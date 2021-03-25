@@ -63,12 +63,15 @@ export const auth = (email, password, username, isSignup) => {
                 }
             })
             .catch(err => {
-                // console.log(err.response)
-                const error = {
-                    status: err.response.request.status,
-                    message: err.response.data.message
-                }
+                console.log(err)
+               if(err.response) {
+                    const error = {
+                        status: err.response.request.status,
+                        message: err.response.data.error.message
+                    }
                 dispatch(authFail(error.status, error.message))
+               }
+               dispatch(authFail(503, 'server error :('))
             })
             return
         }
@@ -78,11 +81,15 @@ export const auth = (email, password, username, isSignup) => {
             dispatch(authSuccess(null, null, null))
         })
         .catch(err => {
-            const error = {
-                status: err.response.request.status,
-                message: err.response.data.error.message
-            }
+            console.log(err)
+           if(err.response) {
+                const error = {
+                    status: err.response.request.status,
+                    message: err.response.data.error.message
+                }
             dispatch(authFail(error.status, error.message))
+           }
+           dispatch(authFail(503, 'server error :('))
         })
 	};
 };

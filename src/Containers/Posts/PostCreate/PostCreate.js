@@ -6,7 +6,7 @@ import Button from '../../../Components/UI/Button/Button';
 import Input from '../../../Components/UI/Input/Input';
 import PostSavedMessage from '../../../Components/PostSavedMessage/PostSavedMessage';
 import ImageTooBigMessage from '../../../Components/ImageTooBigMessage/ImageTooBigMessage';
-// import Error from '../../../Components/UI/Error/Error'
+import Error from '../../../Components/UI/Error/Error'
 import Spinner from '../../../Components/UI/Spinner/Spinner'
 import * as postCreateActions from '../../../store/actions/postCreateActions'
 
@@ -179,8 +179,12 @@ class PostCreate extends Component {
 						placeholder="Post Content"
 						onChange={this.onInputChangeHandler}
 					/>
-					<ImageTooBigMessage displayimageTooBigMessage={this.state.displayImageTooBigMessage} />
-					<PostSavedMessage saveType={this.props.postSaved ? 'saved' : 'updated'} displaySavedPostMessage={this.state.displaySavedPostMessage} />
+					<ImageTooBigMessage 
+						displayimageTooBigMessage={this.state.displayImageTooBigMessage} />
+					{this.props.error ? <Error errorStatus={this.props.errorStatus} errorMessage={this.props.errorMessage} /> : 
+					<PostSavedMessage 
+						saveType={this.props.postSaved ? 'saved' : 'updated'} 
+						displaySavedPostMessage={this.state.displaySavedPostMessage} />}
 					<Spinner showSpinner={this.props.loading} />
 					<div className={classes.ButtonContainer}>
 						<Button
@@ -213,6 +217,8 @@ const mapStateToProps = state => {
 		postSaved: state.postCreate.postSaved,
 		postUpdated: state.postCreate.postUpdated,
 		error: state.postCreate.error,
+		errorStatus: state.postCreate.errorStatus,
+        errorMessage: state.postCreate.errorMessage,
 		loading: state.postCreate.loading
     }
 }

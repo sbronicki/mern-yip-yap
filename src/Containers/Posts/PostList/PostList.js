@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import classes from './PostList.module.css';
 import Post from '../PostCreate/Post/Post';
-// import Error from '../../../Components/UI/Error/Error'
+import Error from '../../../Components/UI/Error/Error'
 import Spinner from '../../../Components/UI/Spinner/Spinner'
 
 
@@ -53,6 +53,7 @@ class PostList extends Component {
 		}
 		return (
 			<ul className={classes.PostList}>
+				{this.props.error ?  <Error errorStatus={this.props.errorStatus} errorMessage={this.props.errorMessage} /> : null}
 				{this.props.loading ? 
 				<Spinner showSpinner={this.props.loading} /> 
 				:  this.props.posts ? 
@@ -66,6 +67,8 @@ const mapStateToProps = state => {
     return {
 		posts: state.postList.posts,
 		error: state.postList.error,
+		errorStatus: state.postList.errorStatus,
+        errorMessage: state.postList.errorMessage,
 		loading: state.postList.loading
     }
 }

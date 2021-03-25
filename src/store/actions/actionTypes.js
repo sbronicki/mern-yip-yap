@@ -3,9 +3,9 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
-export const GET_POSTS_START = 'GET_START'
-export const GET_POSTS_SUCCESS = 'GET_SUCCESS'
-export const GET_POSTS_FAIL = 'GET_FAIL'
+export const GET_POSTS_START = 'GET_POSTS_START'
+export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS'
+export const GET_POSTS_FAIL = 'GET_POSTS_FAIL'
 
 export const DELETE_POST_START = 'DELETE_POST_START'
 export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS'

@@ -1,3 +1,13 @@
 .Error {
-    background-color: orangered;
+    background-color: plum;
+    border: 1px solid black;
+    box-shadow: 0 2px 3px #ccc;
+    border-radius: 5px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 10px;
 }
