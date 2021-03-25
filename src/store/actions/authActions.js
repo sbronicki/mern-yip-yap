@@ -63,12 +63,14 @@ export const auth = (email, password, username, isSignup) => {
                 }
             })
             .catch(err => {
+                console.log(err.response)
                if(err.response) {
                     const error = {
                         status: err.response.request.status,
-                        message: err.response.data.error.message
+                        message: err.response.data.message
                     }
                 dispatch(authFail(error.status, error.message))
+                return
                }
                dispatch(authFail(503, 'server error :('))
             })
@@ -85,6 +87,7 @@ export const auth = (email, password, username, isSignup) => {
                     message: err.response.data.error.message
                 }
             dispatch(authFail(error.status, error.message))
+            return
            }
            dispatch(authFail(503, 'server error :('))
         })

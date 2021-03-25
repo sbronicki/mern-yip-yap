@@ -36,6 +36,7 @@ export const getPosts = () => {
                          message: err.response.data.error.message
                      }
                  dispatch(getPostsFail(error.status, error.message))
+                 return
                 }
                 dispatch(getPostsFail(503, 'server error :('))
              })
@@ -59,6 +60,7 @@ export const getUserPosts = (user) => {
                          message: err.response.data.error.message
                      }
                  dispatch(getPostsFail(error.status, error.message))
+                 return
                 }
                 dispatch(getPostsFail(503, 'server error :('))
              })
@@ -98,6 +100,7 @@ export const deletePost = postId => {
                          message: err.response.data.error.message
                      }
                  dispatch(deletePostFail(error.status, error.message))
+                 return
                 }
                 dispatch(deletePostFail(503, 'server error :('))
              })

@@ -85,6 +85,7 @@ export const getPostToUpdate = (postId) => {
                      message: err.response.data.error.message
                  }
              dispatch(getPostToUpdateFail(error.status, error.message))
+             return
             }
             dispatch(getPostToUpdateFail(503, 'server error :('))
          })
@@ -129,6 +130,7 @@ export const updatePost = (post) => {
                          message: err.response.data.error.message
                      }
                  dispatch(updatePostFail(error.status, error.message))
+                 return
                 }
                 dispatch(updatePostFail(503, 'server error :('))
              })
