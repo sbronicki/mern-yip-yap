@@ -157,7 +157,6 @@ class PostCreate extends Component {
 		if (this.props.match.params.id) {
 			const postId = this.props.match.params.id
 			this.props.onGetPostToUpdate(postId)
-			
 			this.updateAfterMount()
 		}
 	}
@@ -209,6 +208,7 @@ const mapStateToProps = state => {
     return {
         token: state.auth.token,
 		userId: state.auth.userId,
+		username: state.auth.username,
 		title: state.postCreate.title,
 		content: state.postCreate.content,
 		image: state.postCreate.image,

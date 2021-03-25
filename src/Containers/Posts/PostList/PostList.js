@@ -39,6 +39,7 @@ class PostList extends Component {
 						title={post.title}
 						content={post.content}
 						creator={post.creator}
+						creatorUsername={post.username}
 						editPost={this.editPostHandler}
 						deletePost={this.deletePostHandler}
 						image={
@@ -49,7 +50,7 @@ class PostList extends Component {
 						// clicked={() => this.postSelectedHandler}
 					/>
 				);
-			});
+			}); 
 		}
 		return (
 			<ul className={classes.PostList}>

@@ -45,11 +45,11 @@ export const getPosts = () => {
 export const getUserPosts = (user) => {
     return dispatch => {
         dispatch(getPostsStart())
-        if(!user) user = '605a4995d041c73fd4454567'
+        if(!user) user = 'Yip-Yap-Team'
         axios
             .get('/api/posts')
             .then(response => {
-               const userPosts = response.data.posts.filter(post => post.creator === user)
+               const userPosts = response.data.posts.filter(post => post.username === user)
                dispatch(getPostsSuccess(userPosts))
             })
             .catch(err => {

@@ -24,4 +24,5 @@
 }
 .ButtonContainer Button {
     font-size: 11px;
+    padding: 0 5px 0 0;
 }

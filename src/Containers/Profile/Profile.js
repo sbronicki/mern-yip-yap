@@ -16,11 +16,11 @@ class Profile extends Component {
 			<div className={classes.Profile}>
 				{/* <img className={classes.Header} style={this.props.displayHeader ? null : {display: 'none'}} src={this.props.headerImg ? this.props.headerImg : BrandHeader} alt="Logo Header!"/>
 				<img className={classes.PFP} src={this.props.userPFP ? this.props.userPFP : BrandPFP} alt="imageee" /> */}
-				<p className={classes.Username}>{this.props.username ? this.props.username : 'Yip-Yap'}</p>
+				<p className={classes.Username}>{this.props.match.params.username ? this.props.match.params.username : 'Yip-Yap-Team'}</p>
 				{/* <Button btnType='Edit-Follow' >Follow</Button> */}
-				<h3 className={classes.PostsHeader}>{this.props.username ? this.props.username + `'s yaps-` : `Yips-Yap's ~ Yip Yaps-`}</h3>
+				<h3 className={classes.PostsHeader}>{this.props.match.params.username ? this.props.match.params.username + `'s yaps-` : `Yips-Yap-Team's ~ Yip Yaps-`}</h3>
         		<div className={classes.PostListContainer}>
-					<ProfilePostList />
+					<ProfilePostList user={this.props.match.params.username} />
 				</div>
 			</div>
 		);

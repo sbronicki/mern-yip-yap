@@ -21,9 +21,9 @@ class PostList extends Component {
 		this.props.onDeletePost(postId)
 	};
 	componentDidMount() {
-		let userId = localStorage.getItem('userId')
-        this.props.onGetUserPosts(userId)
-		this.setState({user: userId})
+		const user = this.props.user
+        this.props.onGetUserPosts(user)
+		this.setState({user: user})
 	}
 	render() {
 		let posts
@@ -31,12 +31,13 @@ class PostList extends Component {
 			posts = this.props.posts.map((post) => {
 				return (
 					<Post
-						usersPosts={this.state.user === this.props.posts[this.props.posts.indexOf(post)].creator}
+						usersPosts={this.state.user === this.props.posts[this.props.posts.indexOf(post)].username}
 						key={post._id}
 						id={post._id}
 						title={post.title}
 						content={post.content}
 						creator={post.creator}
+						creatorUsername={post.username}
 						editPost={this.editPostHandler}
 						deletePost={this.deletePostHandler}
 						image={
@@ -72,9 +73,15 @@ const mapStateToProps = state => {
 }
 const mapDispatchToprops = dispatch => {
 	return {
-		onGetUserPosts: (userId) => dispatch(actions.getUserPosts(userId)),
+		onGetUserPosts: (username) => dispatch(actions.getUserPosts(username)),
 		onDeletePost: (postId) => dispatch(actions.deletePost(postId))
 	};
 };
+// const mapDispatchToprops = dispatch => {
+// 	return {
+// 		onGetUserPosts: (userId) => dispatch(actions.getUserPosts(userId)),
+// 		onDeletePost: (postId) => dispatch(actions.deletePost(postId))
+// 	};
+// };
 
 export default connect(mapStateToProps, mapDispatchToprops)(PostList);

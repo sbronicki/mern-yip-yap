@@ -63,7 +63,6 @@ export const auth = (email, password, username, isSignup) => {
                 }
             })
             .catch(err => {
-                console.log(err)
                if(err.response) {
                     const error = {
                         status: err.response.request.status,
@@ -80,7 +79,6 @@ export const auth = (email, password, username, isSignup) => {
             dispatch(authSuccess(null, null, null))
         })
         .catch(err => {
-            console.log(err)
            if(err.response) {
                 const error = {
                     status: err.response.request.status,

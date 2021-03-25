@@ -71,9 +71,8 @@ class Layout extends Component {
 						</Route>
 						<Route path="/signup" btnType="Sign up" exact component={Auth} />
 						<Route path="/login" exact component={Auth} />
-						<Route path={"/profile" + (this.props.username ? '/' + this.props.username : null)} exact>
-							<Profile username={this.props.username ? this.props.username : null} />
-						</Route>
+
+						<Route path="/profile/:username" exact component={Profile} />
 						<Route path="/logout" exact component={Logout} />
 						<Route path="/new-post" exact component={PostCreate} />
 						<Route path="/edit-post/:id" component={PostCreate} />

@@ -9,8 +9,7 @@ import * as actions from './store/actions/index'
 // ~~~!!!~~ASAP~~!!!~~~ =>
 // ~~~!!!~~ASAP~~!!!~~~ =>
 // ~~~!!!~~ASAP~~!!!~~~ =>
-// proper error handling 
-// add by: username to posts that are not the logged in users
+// add 'by: username' to posts that are not the logged in users
 // add delete image option in post create / edit preview
 // navigate to feed after updating a post
 // hide sidedrawer when navitem selected

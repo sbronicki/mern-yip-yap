@@ -11,7 +11,8 @@ router.post('', checkAuth, (req, res, next) => {
         title: req.body.title,
         content: req.body.content,
         image: req.body.image,
-        creator: req.userData.userId
+        creator: req.userData.userId,
+        username: req.userData.username
     })
     if(post.title.length === 0 || post.content.length === 0) return
     post.save()
@@ -22,7 +23,6 @@ router.post('', checkAuth, (req, res, next) => {
         })
     })
     .catch(err => {
-        console.log(err)
         return res.status(500).json({
             error: err
         })
