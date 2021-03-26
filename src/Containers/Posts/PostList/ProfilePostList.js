@@ -10,7 +10,8 @@ import Spinner from '../../../Components/UI/Spinner/Spinner'
 class PostList extends Component {
 	state = {
 		posts: [],
-		user: null
+		user: null,
+		profile: null
 	};
 	// postSelectedHandler = (id) => {
 	//     // this.setState({selectedPostId: id});
@@ -21,9 +22,10 @@ class PostList extends Component {
 		this.props.onDeletePost(postId)
 	};
 	componentDidMount() {
-		const user = this.props.user
-        this.props.onGetUserPosts(user)
-		this.setState({user: user})
+		const user = localStorage.getItem('username')
+		const profile = this.props.profile
+        this.props.onGetUserPosts(profile)
+		this.setState({user: user, profile: profile})
 	}
 	render() {
 		let posts
@@ -31,7 +33,8 @@ class PostList extends Component {
 			posts = this.props.posts.map((post) => {
 				return (
 					<Post
-						usersPosts={this.state.user === this.props.posts[this.props.posts.indexOf(post)].username}
+						usersPosts={this.props.profile === this.state.user}
+						// usersPosts={this.props.profile === this.props.posts[this.props.posts.indexOf(post)].username}
 						key={post._id}
 						id={post._id}
 						title={post.title}

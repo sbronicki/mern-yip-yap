@@ -6,10 +6,10 @@ import * as actions from './store/actions/index'
 
 //NEED TO: 
 
-// ~~~!!!~~ASAP~~!!!~~~ =>
-// ~~~!!!~~ASAP~~!!!~~~ =>
-// ~~~!!!~~ASAP~~!!!~~~ =>
+// !!!BEFORE LAUNCH!!!!
 // add 'by: username' to posts that are not the logged in users
+
+// ~~~!!!~~ASAP~~!!!~~~ =>
 // add delete image option in post create / edit preview
 // navigate to feed after updating a post
 // hide sidedrawer when navitem selected

@@ -20,7 +20,7 @@ class Profile extends Component {
 				{/* <Button btnType='Edit-Follow' >Follow</Button> */}
 				<h3 className={classes.PostsHeader}>{this.props.match.params.username ? this.props.match.params.username + `'s yaps-` : `Yips-Yap-Team's ~ Yip Yaps-`}</h3>
         		<div className={classes.PostListContainer}>
-					<ProfilePostList user={this.props.match.params.username} />
+					<ProfilePostList key={this.props.match.params.username} profile={this.props.match.params.username} />
 				</div>
 			</div>
 		);
