@@ -26,3 +26,4 @@ app.js
 user.js
 .env
 node_modules
+backend
