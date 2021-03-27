@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
-axios.defaults.baseURL = 'http://localhost:4200'
+axios.defaults.baseURL = 'http://nodereactyipyap-env-1.eba-mwcvsmid.us-east-2.elasticbeanstalk.com/'
 
 axios.interceptors.request.use(function (config) {
 	const token = store.getState().auth.token;

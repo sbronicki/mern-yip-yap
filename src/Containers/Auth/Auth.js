@@ -44,7 +44,7 @@ class Auth extends Component {
 			authRedirect = <Redirect to='/' />
 		}
 		return (
-			<div className={classes.Auth}>
+			<div className={classes.Auth} key={this.props.errorStatus} >
 				{authRedirect}
                 {this.props.error ? <Error errorStatus={this.props.errorStatus} errorMessage={this.props.errorMessage} /> : null}
                 {!this.props.loading ? 
